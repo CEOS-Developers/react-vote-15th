@@ -1,15 +1,13 @@
 import AppLayout from "../components/AppLayout";
 
-const Login = ()=>{
+const Login = () => {
+  return (
+    <>
+      <AppLayout>
+        <h1>로그인페이지</h1>
+      </AppLayout>
+    </>
+  );
+};
 
-    return(
-        <>
-            <AppLayout>
-                <h1>로그인페이지</h1>
-
-            </AppLayout>
-        </>
-    )
-}
-
-export default Login
+export default Login;
