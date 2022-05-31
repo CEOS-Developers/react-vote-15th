@@ -16,12 +16,6 @@ const AppLayout: FC<Props> = ({ children }) => {
                     <div>시계</div>
                 </Header>
                 {children}
-                <Footer>
-                        <button>홈</button>
-                        <button>메뉴</button>
-                        <button>메뉴</button>
-                        <button>메뉴</button>
-                </Footer>
             </Wrapper>
         </>
     );
@@ -39,19 +33,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
 `
-const Footer = styled.div`
-  
-  border: 1px solid red;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  
-`;
-const FootButtonWrapper = styled.div`
-  display: flex;
-  
-  justify-content: space-between;
-  border: 1px solid rosybrown;
-`;
+
 
 export default AppLayout;
