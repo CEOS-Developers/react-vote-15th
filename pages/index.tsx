@@ -1,9 +1,10 @@
 import AppLayout from "../components/AppLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../reducers";
+import styled from "styled-components";
 
 const Home = () => {
-  const { isLoggedIn } = useSelector<State, State>((state) => state);
+  const { isLoggedIn, mode } = useSelector<State, State>((state) => state);
   const dispatch = useDispatch();
   const test = () => {
     dispatch({ type: "LOGGED_IN" });
@@ -11,13 +12,17 @@ const Home = () => {
   return (
     <>
       <AppLayout>
-        <h1>contents</h1>
-        <button>새로운 투표 만들기</button>
-        <button onClick={test}>button</button>
-        {isLoggedIn ? "true" : "false"}
+        <h1>hahahah</h1>
+        <VoteComponent mode={mode} />
       </AppLayout>
     </>
   );
 };
+
+const VoteComponent = styled.div<{ mode: boolean }>`
+  width: 100px;
+  height: 50px;
+  background: ${({ mode }) => (mode ? "black" : "red")};
+`;
 
 export default Home;
