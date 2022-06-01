@@ -16,7 +16,7 @@ export const reducer = (state: State = initialState, action: AnyAction) => {
     case "LOGGED_IN":
       return { ...state, isLoggedIn: true };
     case "CHANGE_MODE":
-      return { ...state, mode: false };
+      return { ...state, mode: !state.mode };
     default:
       return state;
   }
