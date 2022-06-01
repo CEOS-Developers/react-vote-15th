@@ -22,7 +22,9 @@ const Home = () => {
 const VoteComponent = styled.div<{ mode: boolean }>`
   width: 100px;
   height: 50px;
-  background: ${({ mode }) => (mode ? "black" : "red")};
+  color: var(--bg-mode1-color1);
+  background: ${({ mode }) =>
+    mode ? "var(--bg-mode1-color1)" : "var(--bg-mode2-color1)"};
 `;
 
 export default Home;
