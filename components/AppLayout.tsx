@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import React from "react";
+
 type Props = {
   children: React.ReactNode;
 };
