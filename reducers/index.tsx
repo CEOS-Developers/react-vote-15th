@@ -4,8 +4,13 @@ import { HYDRATE } from "next-redux-wrapper";
 export interface State {
   mode: boolean;
   isLoggedIn: boolean;
+  user: object;
 }
-const initialState = { mode: true, isLoggedIn: false };
+const initialState = {
+  mode: true,
+  isLoggedIn: false,
+  user: {},
+};
 
 // create your reducer
 export const reducer = (state: State = initialState, action: AnyAction) => {
