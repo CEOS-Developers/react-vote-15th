@@ -12,12 +12,13 @@ const AppLayout: FC<Props> = ({ children }) => {
   const { isLoggedIn, mode } = useSelector<State, State>((state) => state);
   const dispatch = useDispatch();
   const router = useRouter();
-  const pathname = router.pathname;
+
   const changeMode = (): void => {
     dispatch({
       type: "CHANGE_MODE",
     });
   };
+
   return (
     <>
       <Wrapper>
@@ -36,7 +37,7 @@ const Wrapper = styled.div`
   height: 500px;
   border: 1px dotted green;
   display: grid;
-  grid-template-rows: 1fr 12fr 2fr;
+  grid-template-rows: 1fr 12fr;
 `;
 const Header = styled.div`
   border: 2px dotted gold;
