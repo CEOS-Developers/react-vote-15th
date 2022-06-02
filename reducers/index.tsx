@@ -10,6 +10,8 @@ const initialState = {
   mode: true,
   isLoggedIn: false,
   user: {},
+  vote: {},
+  candidate: {},
 };
 
 // create your reducer

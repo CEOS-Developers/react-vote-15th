@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     // 검흰
     --bg-mode-black : #05070C;
     --bg-mode-white : #FFFFFF;
+    --bg-mode-gray : #F6F6F4;
     
   }
   *{
