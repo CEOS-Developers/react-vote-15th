@@ -1,6 +1,7 @@
 import AppLayout from "../../components/AppLayout";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import CandidateList from "../../components/CandidateList";
 
 const Vote = () => {
   const router = useRouter();
@@ -13,14 +14,19 @@ const Vote = () => {
   const pushVoteResult = () => {
     router.push("/vote/result").then((r) => null);
   };
+  const names = ["유시원", "김주현", "김현재"];
   return (
     <>
       <AppLayout>
         <Wrapper>
           <button onClick={backHome}>↩️</button>
-          <div>후보자1</div>
-          <div>후보자2</div>
-          <div>후보자3</div>
+          {names.map((name) => {
+            return (
+              <>
+                <CandidateList name={name} />
+              </>
+            );
+          })}
           <button>후보자 추가</button>
           <button>투표하기</button>
           <button onClick={pushVoteGet}>현황 확인</button>
