@@ -14,6 +14,7 @@ import {
 export interface IState {
   mode: boolean;
   isLoggedIn: boolean;
+  handleCandidateModal: boolean;
   user: IUser | null;
   currentVoteStatus: ICurrentVoteStatus | null;
   currentVoteStatusByCandidate: ICurrentVoteStatusByCandidate | null;
@@ -21,13 +22,15 @@ export interface IState {
 const initialState: IState = {
   mode: true,
   isLoggedIn: false,
+  handleCandidateModal: false,
   user: null,
   currentVoteStatus: dummyCurrentVoteStatus,
   currentVoteStatusByCandidate: dummyCurrentVoteStatusByCandidate,
 };
 
-const LOGGED_IN: string = "LOGGED_IN";
-const CHANGE_MODE: string = "CHANGE_MODE";
+export const LOGGED_IN: string = "LOGGED_IN";
+export const CHANGE_MODE: string = "CHANGE_MODE";
+export const HANDLE_CANDIDATE_MODAL: string = "HANDLE_CANDIDATE_MODAL";
 
 // create your reducer
 export const reducer = (state: IState = initialState, action: AnyAction) => {
@@ -38,6 +41,9 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
       return { ...state, isLoggedIn: true };
     case CHANGE_MODE:
       return { ...state, mode: !state.mode };
+    case HANDLE_CANDIDATE_MODAL:
+      return { ...state, handleCandidateModal: !state.handleCandidateModal };
+
     default:
       return state;
   }

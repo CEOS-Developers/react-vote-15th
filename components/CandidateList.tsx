@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { FC } from "react";
 
-const CandidateList = ({ name }) => {
+interface Props {
+  name: string;
+}
+
+const CandidateList: FC<Props> = ({ name }) => {
   return (
     <Wrapper>
       <CandidateImg>대략 그림</CandidateImg>
