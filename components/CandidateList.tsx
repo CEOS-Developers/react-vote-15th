@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const CandidateList = () => {
+const CandidateList = ({ name }) => {
   return (
     <Wrapper>
       <CandidateImg>대략 그림</CandidateImg>
       <CandidateInfo>
-        <Name></Name>
+        <Name>{name}</Name>
       </CandidateInfo>
       <VotedButton>투표하기</VotedButton>
     </Wrapper>
