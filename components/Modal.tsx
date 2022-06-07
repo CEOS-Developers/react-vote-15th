@@ -29,7 +29,6 @@ const Modal: FC<Props> = ({ children }) => {
 
 const ModalWrapper = styled.div`
   position: absolute;
-  text-align: center;
   left: 0px;
   bottom: 0;
   top: 0;
@@ -41,11 +40,10 @@ const ModalWrapper = styled.div`
 const Container = styled.div`
   width: 200px;
   height: 70px;
-  border: 1px solid red;
   position: absolute;
-  background: red;
-  right: 100px;
-  top: 50vh;
+  background: var(--bg-mode-gray);
+  right: 10vh;
+  top: 30vh;
 `;
 
 export default Modal;

@@ -1,7 +1,11 @@
 import { all, fork } from "redux-saga/effects";
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
+import userSaga from "./user";
+import { backUrl } from "../config/config";
+
+axios.defaults.baseURL = backUrl;
+
 export function* rootSaga() {
-  yield all([]);
+  yield all([fork(userSaga)]);
 }

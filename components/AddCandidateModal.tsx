@@ -2,7 +2,7 @@ import useInput from "../hooks/useInput";
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { HANDLE_CANDIDATE_MODAL } from "../reducers";
+import { ADD_CANDIDATE_NAME, HANDLE_CANDIDATE_MODAL } from "../reducers";
 import Modal from "./Modal";
 
 const AddCandidateModal = () => {
@@ -16,6 +16,11 @@ const AddCandidateModal = () => {
   }, []);
   const onSubmitCandidateName = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault();
+    dispatch({
+      type: ADD_CANDIDATE_NAME,
+      data: { name: candidateName },
+    });
+    console.log("hi");
   }, []);
   const stopPropagation = useCallback((e: React.SyntheticEvent) => {
     e.stopPropagation();
