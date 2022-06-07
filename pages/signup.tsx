@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Signup = () => {
   const router = useRouter();
@@ -32,6 +33,17 @@ const Signup = () => {
       dispatch({
         type: "LOGGED_IN",
       });
+      axios
+        .post("http://13.124.39.104/api/signup/", {
+          username: user,
+          email,
+          password: pwd,
+        })
+        .then((r) => console.log(r))
+        .catch((err) => {
+          console.dir(err);
+        });
+
       router
         .push("/")
         .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));

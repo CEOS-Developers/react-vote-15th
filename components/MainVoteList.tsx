@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { State } from "../reducers";
+import { IState } from "../reducers";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import frontUrl from "../public/front.png";
@@ -20,7 +20,7 @@ const MainVoteList = () => {
     third: "CEOS 회장단 투표",
   };
 
-  const { isLoggedIn, mode } = useSelector<State, State>((state) => state);
+  const { isLoggedIn, mode } = useSelector<IState, IState>((state) => state);
   const router = useRouter();
   const dispatch = useDispatch();
 

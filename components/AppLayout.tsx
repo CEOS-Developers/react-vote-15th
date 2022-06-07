@@ -3,13 +3,13 @@ import styled, { css } from "styled-components";
 import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { State } from "../reducers";
+import { IState } from "../reducers";
 
 type Props = {
   children: React.ReactNode;
 };
 const AppLayout: FC<Props> = ({ children }) => {
-  const { isLoggedIn, mode } = useSelector<State, State>((state) => state);
+  const { isLoggedIn, mode } = useSelector<IState, IState>((state) => state);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -54,7 +54,7 @@ const AppLayout: FC<Props> = ({ children }) => {
 const Wrapper = styled.div<{ isMobile: boolean }>`
   width: 500px;
   height: 500px;
-
+  position: relative;
   display: grid;
   grid-template-rows: 1fr 12fr;
   -webkit-box-shadow: 5px 5px 15px -5px #000000;
