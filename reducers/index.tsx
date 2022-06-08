@@ -19,6 +19,9 @@ export interface IState {
   user: IUser | null;
   currentVoteStatus: ICurrentVoteStatus | null;
   currentVoteStatusByCandidate: ICurrentVoteStatusByCandidate | null;
+  signUpLoading: boolean | null;
+  signUpDone: boolean | null;
+  signUpError: boolean | object | string | null;
 }
 const initialState: IState = {
   mode: true,
@@ -27,6 +30,9 @@ const initialState: IState = {
   user: null,
   currentVoteStatus: dummyCurrentVoteStatus,
   currentVoteStatusByCandidate: dummyCurrentVoteStatusByCandidate,
+  signUpLoading: false,
+  signUpDone: false,
+  signUpError: null,
 };
 
 export const LOGGED_IN: string = "LOGGED_IN";
@@ -69,8 +75,8 @@ export const LOG_IN_FAILURE: string = "LOG_IN_FAILURE";
 export const reducer = (state: IState = initialState, action: AnyAction) => {
   return produce(state, (draft) => {
     switch (action.type) {
-      case HYDRATE:
-        return { ...state, ...action.payload };
+      // case HYDRATE:
+      // return { ...state, ...action.payload };
       case LOGGED_IN:
         draft.isLoggedIn = true;
         break;
@@ -82,6 +88,20 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
         break;
       case ADD_CANDIDATE_NAME:
         draft.currentVoteStatus?.push(action.data);
+      case SIGN_UP_REQUEST:
+        draft.signUpLoading = true;
+        draft.signUpDone = null;
+        draft.signUpError = false;
+        break;
+      case SIGN_UP_SUCCESS:
+        draft.signUpLoading = false;
+        draft.signUpDone = true;
+        draft.user = action.data;
+        break;
+      case SIGN_UP_FAILURE:
+        draft.signUpLoading = false;
+        draft.signUpError = action.error;
+        break;
       default:
         return state;
     }
