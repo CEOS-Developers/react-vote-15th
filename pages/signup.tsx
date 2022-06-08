@@ -1,27 +1,31 @@
 import AppLayout from "../components/AppLayout";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { IState, LOGGED_IN, SIGN_UP_REQUEST } from "../reducers";
 
 const Signup = () => {
+  const { isLoggedIn, mode, user } = useSelector<IState, IState>(
+    (state) => state
+  );
+  console.log("user", user);
   const router = useRouter();
   const dispatch = useDispatch();
-  const [pwdError, setPwdError] = useState(false);
-  const [pwdCheck, setPwdCheck] = useState("");
+  const [passwordError, setPwdError] = useState(false);
+  const [passwordCheck, setPwdCheck] = useState("");
 
   const [email, onChangeEmail] = useInput("");
-  const [user, onChangeUser] = useInput("");
-  const [pwd, onChangePwd] = useInput("");
+  const [username, onChangeUser] = useInput("");
+  const [password, onChangePwd] = useInput("");
 
   const onChangePwdCheck = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
-      setPwdError(e.target.value !== pwd);
+      setPwdError(e.target.value !== password);
       setPwdCheck(e.target.value);
     },
-    [pwdCheck, pwd]
+    [passwordCheck, password]
   );
 
   const backHome = () => {
@@ -30,26 +34,28 @@ const Signup = () => {
   const submitSignUpForm = useCallback(
     (e: React.SyntheticEvent) => {
       e.preventDefault();
-      dispatch({
-        type: "LOGGED_IN",
-      });
-      axios
-        .post("http://13.124.39.104/api/signup/", {
-          username: user,
-          email,
-          password: pwd,
-        })
-        .then((r) => console.log(r))
-        .catch((err) => {
-          console.dir(err);
-        });
 
-      router
-        .push("/")
-        .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));
+      const obj = {
+        username,
+        password,
+        email,
+      };
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: obj,
+      });
     },
-    [user, pwd, pwdCheck, email]
+    [username, password, passwordCheck, email]
   );
+
+  useEffect(() => {
+    dispatch({
+      type: LOGGED_IN,
+    });
+    router
+      .push("/")
+      .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));
+  }, [user]);
   return (
     <>
       <AppLayout>
@@ -59,7 +65,7 @@ const Signup = () => {
             <input
               type="text"
               onChange={onChangeUser}
-              value={user}
+              value={username}
               placeholder="사용자이름"
               required
             />
@@ -73,18 +79,18 @@ const Signup = () => {
             <input
               type="password"
               onChange={onChangePwd}
-              value={pwd}
+              value={password}
               placeholder="비밀번호"
               required
             />
             <input
               type="password"
               onChange={onChangePwdCheck}
-              value={pwdCheck}
+              value={passwordCheck}
               placeholder="비밀번호확인"
               required
             />
-            {pwdError && (
+            {passwordError && (
               <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
             )}
             <button>회원가입하기</button>
