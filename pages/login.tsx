@@ -1,13 +1,15 @@
 import AppLayout from "../components/AppLayout";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IState, LOG_IN_REQUEST } from "../reducers";
 import useInput from "../hooks/useInput";
 
 const Login = () => {
-  const { isLoggedIn, mode } = useSelector<IState, IState>((state) => state);
+  const { mode, user, logInError } = useSelector<IState, IState>(
+    (state) => state
+  );
 
   const [username, onChangeUsername] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -34,15 +36,17 @@ const Login = () => {
         type: LOG_IN_REQUEST,
         data,
       });
-
-      // router.push("/").then((r) =>
-      //   dispatch({
-      //     type: "LOGGED_IN",
-      //   })
-      // );
     },
     [username, password]
   );
+  useEffect(() => {
+    if (user) {
+      router.push("/").then(() => null);
+    }
+    if (logInError) {
+      alert("아이디 비밀번호를 다시 확인해주세요");
+    }
+  }, [user, logInError]);
   return (
     <>
       <AppLayout>

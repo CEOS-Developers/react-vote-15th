@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IState, LOGGED_IN, SIGN_UP_REQUEST } from "../reducers";
 
 const Signup = () => {
-  const { isLoggedIn, mode, user } = useSelector<IState, IState>(
+  const { mode, user, signUpError } = useSelector<IState, IState>(
     (state) => state
   );
   const router = useRouter();
@@ -34,14 +34,14 @@ const Signup = () => {
     (e: React.SyntheticEvent) => {
       e.preventDefault();
 
-      const obj = {
+      const data = {
         username,
         password,
         email,
       };
       dispatch({
         type: SIGN_UP_REQUEST,
-        data: obj,
+        data,
       });
     },
     [username, password, passwordCheck, email]
@@ -49,15 +49,14 @@ const Signup = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
-      dispatch({
-        type: LOGGED_IN,
-      });
       router
         .push("/")
         .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));
     }
-  }, [user]);
+    if (signUpError) {
+      alert("값이 잘못 입력 됐습니다.");
+    }
+  }, [user, signUpError]);
   return (
     <>
       <AppLayout>

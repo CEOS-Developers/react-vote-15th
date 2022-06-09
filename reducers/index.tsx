@@ -1,20 +1,16 @@
 import { AnyAction } from "redux";
-import { HYDRATE } from "next-redux-wrapper";
 
 import {
   IUser,
   ICurrentVoteStatusByCandidate,
   ICurrentVoteStatus,
 } from "../interfaces/interface";
-import {
-  dummyCurrentVoteStatus,
-  dummyCurrentVoteStatusByCandidate,
-} from "./dummy";
+
 import produce from "immer";
 
 export interface IState {
   mode: boolean;
-  isLoggedIn: boolean;
+
   handleCandidateModal: boolean;
   user: IUser | null;
   currentVoteStatus: ICurrentVoteStatus | null;
@@ -28,10 +24,13 @@ export interface IState {
   addCandidateNameLoading: boolean | null;
   addCandidateNameDone: boolean | null;
   addCandidateNameError: boolean | object | string | null;
+  currentVoteStatusLoading: boolean | null;
+  currentVoteStatusDone: boolean | null;
+  currentVoteStatusError: boolean | object | string | null;
 }
 const initialState: IState = {
   mode: true,
-  isLoggedIn: false,
+
   handleCandidateModal: false,
   user: null,
   currentVoteStatus: null,
@@ -46,6 +45,9 @@ const initialState: IState = {
   addCandidateNameLoading: false,
   addCandidateNameDone: false,
   addCandidateNameError: null,
+  currentVoteStatusLoading: false,
+  currentVoteStatusDone: false,
+  currentVoteStatusError: null,
 };
 
 export const LOGGED_IN: string = "LOGGED_IN";
@@ -88,9 +90,6 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
     switch (action.type) {
       // case HYDRATE:
       // return { ...state, ...action.payload };
-      case LOGGED_IN:
-        draft.isLoggedIn = true;
-        break;
       case CHANGE_MODE:
         draft.mode = !draft.mode;
         break;
@@ -101,12 +100,17 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
         draft.addCandidateNameLoading = true;
         draft.addCandidateNameDone = null;
         draft.addCandidateNameError = false;
+        break;
       case ADD_CANDIDATE_NAME_SUCCESS:
         draft.addCandidateNameLoading = false;
         draft.addCandidateNameDone = true;
+
+        draft.handleCandidateModal = !draft.handleCandidateModal;
+        break;
       case ADD_CANDIDATE_NAME_FAILURE:
         draft.addCandidateNameLoading = false;
         draft.addCandidateNameError = action.error;
+        break;
       case SIGN_UP_REQUEST:
         draft.signUpLoading = true;
         draft.signUpDone = null;
@@ -134,6 +138,20 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
       case LOG_IN_FAILURE:
         draft.logInLoading = false;
         draft.logInError = action.error;
+        break;
+      case CURRENT_VOTE_STATUS_REQUEST:
+        draft.currentVoteStatusLoading = true;
+        draft.currentVoteStatusDone = null;
+        draft.currentVoteStatusError = false;
+        break;
+      case CURRENT_VOTE_STATUS_SUCCESS:
+        draft.currentVoteStatusLoading = false;
+        draft.currentVoteStatusDone = true;
+        draft.currentVoteStatus = action.data;
+        break;
+      case CURRENT_VOTE_STATUS_FAILURE:
+        draft.currentVoteStatusLoading = false;
+        draft.currentVoteStatusError = action.error;
         break;
       default:
         return state;

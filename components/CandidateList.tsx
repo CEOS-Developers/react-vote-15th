@@ -22,8 +22,11 @@ const Wrapper = styled.div`
   height: 70px;
   padding: 5px;
   display: grid;
-  border: 2px dotted blue;
   grid-template-columns: 1fr 2fr 1fr;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 15px -5px #000000;
+  box-shadow: 5px 5px 15px -5px #000000;
 `;
 const CandidateImg = styled.div`
   width: 100%;

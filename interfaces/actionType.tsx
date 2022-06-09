@@ -22,3 +22,8 @@ export interface IAddCandidateNameAction {
     name: string;
   };
 }
+
+export interface ICurrentVoteStatusAction {
+  type: string;
+  data: null;
+}
