@@ -12,10 +12,13 @@ import { useCallback, useEffect } from "react";
 import AddCandidateModal from "../../components/AddCandidateModal";
 
 const Vote = () => {
-  const { mode, handleCandidateModal, currentVoteStatus, user } = useSelector<
-    IState,
-    IState
-  >((state) => state);
+  const {
+    mode,
+    handleCandidateModal,
+    currentVoteStatus,
+    user,
+    addCandidateNameDone,
+  } = useSelector<IState, IState>((state) => state);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -42,7 +45,7 @@ const Vote = () => {
       type: CURRENT_VOTE_STATUS_REQUEST,
       data: null,
     });
-  }, []);
+  }, [addCandidateNameDone]);
 
   return (
     <>

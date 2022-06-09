@@ -100,13 +100,17 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
         draft.addCandidateNameLoading = true;
         draft.addCandidateNameDone = null;
         draft.addCandidateNameError = false;
+        break;
       case ADD_CANDIDATE_NAME_SUCCESS:
         draft.addCandidateNameLoading = false;
         draft.addCandidateNameDone = true;
 
+        draft.handleCandidateModal = !draft.handleCandidateModal;
+        break;
       case ADD_CANDIDATE_NAME_FAILURE:
         draft.addCandidateNameLoading = false;
         draft.addCandidateNameError = action.error;
+        break;
       case SIGN_UP_REQUEST:
         draft.signUpLoading = true;
         draft.signUpDone = null;
