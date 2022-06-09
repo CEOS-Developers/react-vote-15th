@@ -9,7 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 const AppLayout: FC<Props> = ({ children }) => {
-  const { isLoggedIn, mode } = useSelector<IState, IState>((state) => state);
+  const { mode } = useSelector<IState, IState>((state) => state);
   const dispatch = useDispatch();
   const router = useRouter();
 

@@ -75,12 +75,10 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr 8fr 1fr;
   height: 100%;
-  border: 1px solid royalblue;
 `;
 const CandidateListContainer = styled.div`
-  height: 100%;
+  height: 350px;
   overflow: scroll;
-  border: 1px solid red;
 `;
 const ButtonsContainer = styled.div``;
 
