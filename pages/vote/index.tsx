@@ -8,8 +8,9 @@ import { useCallback } from "react";
 import AddCandidateModal from "../../components/AddCandidateModal";
 
 const Vote = () => {
-  const { isLoggedIn, mode, handleCandidateModal, currentVoteStatus } =
+  const { isLoggedIn, mode, handleCandidateModal, currentVoteStatus, user } =
     useSelector<IState, IState>((state) => state);
+  console.log(user);
   const dispatch = useDispatch();
   const router = useRouter();
   const backHome = () => {
@@ -21,7 +22,7 @@ const Vote = () => {
   const pushVoteResult = () => {
     router.push("/vote/result").then((r) => null);
   };
-  const names = ["유시원", "김주현", "김현재"];
+
   console.log(currentVoteStatus);
   const handleAddCandidateModal = useCallback(() => {
     dispatch({

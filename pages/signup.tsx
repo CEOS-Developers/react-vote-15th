@@ -10,7 +10,6 @@ const Signup = () => {
   const { isLoggedIn, mode, user } = useSelector<IState, IState>(
     (state) => state
   );
-  console.log("user", user);
   const router = useRouter();
   const dispatch = useDispatch();
   const [passwordError, setPwdError] = useState(false);
@@ -49,12 +48,15 @@ const Signup = () => {
   );
 
   useEffect(() => {
-    dispatch({
-      type: LOGGED_IN,
-    });
-    router
-      .push("/")
-      .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));
+    if (user) {
+      console.log(user);
+      dispatch({
+        type: LOGGED_IN,
+      });
+      router
+        .push("/")
+        .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));
+    }
   }, [user]);
   return (
     <>

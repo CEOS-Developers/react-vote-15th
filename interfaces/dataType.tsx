@@ -3,11 +3,11 @@ export interface ISignUpData {
   email: string;
   password: string;
 }
-export interface ISignUpResponseType {
-  data: {};
-  status: number;
-  statusText: string;
-  headers: {};
-  config: {};
-  request: XMLHttpRequest;
+
+export interface ILogInData {
+  username: string;
+  password: string;
+}
+export interface IAddCandidateNameData {
+  name: string;
 }
