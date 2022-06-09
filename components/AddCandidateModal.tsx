@@ -1,30 +1,24 @@
 import useInput from "../hooks/useInput";
 import React, { useCallback } from "react";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { ADD_CANDIDATE_NAME, HANDLE_CANDIDATE_MODAL } from "../reducers";
+import { ADD_CANDIDATE_NAME_REQUEST } from "../reducers";
 import Modal from "./Modal";
 
 const AddCandidateModal = () => {
   const dispatch = useDispatch();
   const [candidateName, onChangeCandidateName] = useInput("");
 
-  const handleCloseModal = useCallback(() => {
-    dispatch({
-      type: HANDLE_CANDIDATE_MODAL,
-    });
-  }, []);
   const onSubmitCandidateName = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault();
+    const data = {
+      name: candidateName,
+    };
     dispatch({
-      type: ADD_CANDIDATE_NAME,
-      data: { name: candidateName },
+      type: ADD_CANDIDATE_NAME_REQUEST,
+      data,
     });
-    console.log("hi");
   }, []);
-  const stopPropagation = useCallback((e: React.SyntheticEvent) => {
-    e.stopPropagation();
-  }, []);
+
   return (
     <Modal>
       <form onSubmit={onSubmitCandidateName} action="">

@@ -8,5 +8,17 @@ export interface ISignUpAction {
     password: string;
   };
 }
+export interface ILogInAction {
+  type: string;
+  data: {
+    username: string;
+    password: string;
+  };
+}
 
-export class ISignUpData {}
+export interface IAddCandidateNameAction {
+  type: string;
+  data: {
+    name: string;
+  };
+}

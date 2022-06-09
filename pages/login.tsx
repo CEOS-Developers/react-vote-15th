@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IState } from "../reducers";
+import { IState, LOG_IN_REQUEST } from "../reducers";
 import useInput from "../hooks/useInput";
 
 const Login = () => {
@@ -21,14 +21,28 @@ const Login = () => {
     router.push("/signup").then((r) => null);
   };
 
-  const submitLogInForm = useCallback((e: React.SyntheticEvent) => {
-    e.preventDefault();
-    router.push("/").then((r) =>
+  const submitLogInForm = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.preventDefault();
+
+      const data = {
+        username,
+        password,
+      };
+      console.log(data);
       dispatch({
-        type: "LOGGED_IN",
-      })
-    );
-  }, []);
+        type: LOG_IN_REQUEST,
+        data,
+      });
+
+      // router.push("/").then((r) =>
+      //   dispatch({
+      //     type: "LOGGED_IN",
+      //   })
+      // );
+    },
+    [username, password]
+  );
   return (
     <>
       <AppLayout>
