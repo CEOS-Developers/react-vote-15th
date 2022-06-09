@@ -8,16 +8,19 @@ const AddCandidateModal = () => {
   const dispatch = useDispatch();
   const [candidateName, onChangeCandidateName] = useInput("");
 
-  const onSubmitCandidateName = useCallback((e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const data = {
-      name: candidateName,
-    };
-    dispatch({
-      type: ADD_CANDIDATE_NAME_REQUEST,
-      data,
-    });
-  }, []);
+  const onSubmitCandidateName = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.preventDefault();
+      const data = {
+        name: candidateName,
+      };
+      dispatch({
+        type: ADD_CANDIDATE_NAME_REQUEST,
+        data,
+      });
+    },
+    [candidateName]
+  );
 
   return (
     <Modal>

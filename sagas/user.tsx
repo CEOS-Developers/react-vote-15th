@@ -3,6 +3,9 @@ import {
   ADD_CANDIDATE_NAME_FAILURE,
   ADD_CANDIDATE_NAME_REQUEST,
   ADD_CANDIDATE_NAME_SUCCESS,
+  CURRENT_VOTE_STATUS_FAILURE,
+  CURRENT_VOTE_STATUS_REQUEST,
+  CURRENT_VOTE_STATUS_SUCCESS,
   LOG_IN_FAILURE,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
@@ -13,6 +16,7 @@ import {
 import axios from "axios";
 import {
   IAddCandidateNameAction,
+  ICurrentVoteStatusAction,
   ILogInAction,
   ISignUpAction,
 } from "../interfaces/actionType";
@@ -23,6 +27,7 @@ import {
 } from "../interfaces/dataType";
 import {
   IAddCandidateNameResponseType,
+  ICurrentVoteStatusResponseType,
   ILogInResponseType,
   ISignUpResponseType,
 } from "../interfaces/responseType";
@@ -36,6 +41,9 @@ function logInAPI(data: ILogInData) {
 
 function addCandidateNameAPI(data: IAddCandidateNameData) {
   return axios.post("/api/candidates/", data);
+}
+function currentVoteStatusAPI(data: null) {
+  return axios.get("/api/votes/");
 }
 
 function* signUp(action: ISignUpAction) {
@@ -81,6 +89,7 @@ function* addCandidateName(action: IAddCandidateNameAction) {
       addCandidateNameAPI,
       action.data
     );
+    console.log(result.data);
     yield put({
       type: ADD_CANDIDATE_NAME_SUCCESS,
       data: result.data,
@@ -89,6 +98,26 @@ function* addCandidateName(action: IAddCandidateNameAction) {
     console.error(error);
     yield put({
       type: ADD_CANDIDATE_NAME_FAILURE,
+      error: error.response.data,
+    });
+  }
+}
+
+function* currentVoteStatus(action: ICurrentVoteStatusAction) {
+  try {
+    const result: ICurrentVoteStatusResponseType = yield call(
+      currentVoteStatusAPI,
+      action.data
+    );
+    console.log(result.data);
+    yield put({
+      type: CURRENT_VOTE_STATUS_SUCCESS,
+      data: result.data,
+    });
+  } catch (error: any) {
+    console.error(error);
+    yield put({
+      type: CURRENT_VOTE_STATUS_FAILURE,
       error: error.response.data,
     });
   }
@@ -107,7 +136,15 @@ function* watchAddCandidateName() {
   console.log("후보자 추가 요청 사가 실행");
   yield takeLatest(ADD_CANDIDATE_NAME_REQUEST, addCandidateName);
 }
+function* watchCurrentVoteStatus() {
+  yield takeLatest(CURRENT_VOTE_STATUS_REQUEST, currentVoteStatus);
+}
 
 export default function* userSaga() {
-  yield all([fork(watchSignUp), fork(watchLogIn), fork(watchAddCandidateName)]);
+  yield all([
+    fork(watchSignUp),
+    fork(watchLogIn),
+    fork(watchAddCandidateName),
+    fork(watchCurrentVoteStatus),
+  ]);
 }

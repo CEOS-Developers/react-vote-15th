@@ -20,12 +20,12 @@ const MainVoteList = () => {
     third: "CEOS 회장단 투표",
   };
 
-  const { isLoggedIn, mode } = useSelector<IState, IState>((state) => state);
+  const { user, mode } = useSelector<IState, IState>((state) => state);
   const router = useRouter();
   const dispatch = useDispatch();
 
   const askLogin = (): void => {
-    if (!isLoggedIn) {
+    if (!user) {
       const res = confirm("로그인이 필요합니다.");
       if (res) {
         router.push("/login").then((r) => null);
@@ -143,6 +143,7 @@ const LoggerContainer = styled.div`
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
+
   width: 100%;
   height: 100%;
 `;
