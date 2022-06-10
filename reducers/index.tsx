@@ -24,13 +24,15 @@ export interface IState {
   addCandidateNameLoading: boolean | null;
   addCandidateNameDone: boolean | null;
   addCandidateNameError: boolean | object | string | null;
+  voteToCandidateLoading: boolean | null;
+  voteToCandidateDone: boolean | null;
+  voteToCandidateError: boolean | object | string | null;
   currentVoteStatusLoading: boolean | null;
   currentVoteStatusDone: boolean | null;
   currentVoteStatusError: boolean | object | string | null;
 }
 const initialState: IState = {
   mode: true,
-
   handleCandidateModal: false,
   user: null,
   currentVoteStatus: null,
@@ -45,6 +47,9 @@ const initialState: IState = {
   addCandidateNameLoading: false,
   addCandidateNameDone: false,
   addCandidateNameError: null,
+  voteToCandidateLoading: false,
+  voteToCandidateDone: false,
+  voteToCandidateError: null,
   currentVoteStatusLoading: false,
   currentVoteStatusDone: false,
   currentVoteStatusError: null,
@@ -104,12 +109,24 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
       case ADD_CANDIDATE_NAME_SUCCESS:
         draft.addCandidateNameLoading = false;
         draft.addCandidateNameDone = true;
-
         draft.handleCandidateModal = !draft.handleCandidateModal;
         break;
       case ADD_CANDIDATE_NAME_FAILURE:
         draft.addCandidateNameLoading = false;
         draft.addCandidateNameError = action.error;
+        break;
+      case VOTE_TO_CANDIDATE_REQUEST:
+        draft.voteToCandidateLoading = true;
+        draft.voteToCandidateDone = null;
+        draft.voteToCandidateError = false;
+        break;
+      case VOTE_TO_CANDIDATE_SUCCESS:
+        draft.voteToCandidateLoading = false;
+        draft.voteToCandidateDone = true;
+        break;
+      case VOTE_TO_CANDIDATE_FAILURE:
+        draft.voteToCandidateLoading = false;
+        draft.voteToCandidateError = action.error;
         break;
       case SIGN_UP_REQUEST:
         draft.signUpLoading = true;

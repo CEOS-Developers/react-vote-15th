@@ -1,18 +1,43 @@
 import styled from "styled-components";
 import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IState, VOTE_TO_CANDIDATE_REQUEST } from "../reducers";
 
 interface Props {
   name: string;
+  candidateNumber: number;
 }
 
-const CandidateList: FC<Props> = ({ name }) => {
+const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
+  const { mode, user } = useSelector<IState, IState>((state) => state);
+  const dispatch = useDispatch();
+  const onClickVoteButton = () => {
+    const result: boolean = confirm(`${name}에 투표하시겠습니까?`);
+    // 후보자 번호를 id 에 담음
+    const id = String(candidateNumber);
+    const data = {
+      id,
+    };
+    if (result) {
+      if (user?.is_voted) {
+        return alert("이미 투표 하셨습니다 😭");
+      }
+      dispatch({
+        type: VOTE_TO_CANDIDATE_REQUEST,
+        data,
+      });
+
+      alert(`${name}에 투표가 완료 됐습니다.`);
+    }
+  };
+
   return (
     <Wrapper>
       <CandidateImg>대략 그림</CandidateImg>
       <CandidateInfo>
         <Name>{name}</Name>
       </CandidateInfo>
-      <VotedButton>투표하기</VotedButton>
+      <VotedButton onClick={onClickVoteButton}>투표하기</VotedButton>
     </Wrapper>
   );
 };

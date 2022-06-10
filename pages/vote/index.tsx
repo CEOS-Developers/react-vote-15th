@@ -56,7 +56,11 @@ const Vote = () => {
             {currentVoteStatus?.map((user) => {
               return (
                 <>
-                  <CandidateList key={user.id} name={user.name} />
+                  <CandidateList
+                    key={user.id + `new Date()`}
+                    name={user.name}
+                    candidateNumber={user.id}
+                  />
                 </>
               );
             })}

@@ -12,6 +12,9 @@ import {
   SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
+  VOTE_TO_CANDIDATE_FAILURE,
+  VOTE_TO_CANDIDATE_REQUEST,
+  VOTE_TO_CANDIDATE_SUCCESS,
 } from "../reducers";
 import axios from "axios";
 import {
@@ -19,17 +22,20 @@ import {
   ICurrentVoteStatusAction,
   ILogInAction,
   ISignUpAction,
+  IVoteToCandidateAction,
 } from "../interfaces/actionType";
 import {
   ISignUpData,
   ILogInData,
   IAddCandidateNameData,
+  IVoteToCandidateData,
 } from "../interfaces/dataType";
 import {
   IAddCandidateNameResponseType,
   ICurrentVoteStatusResponseType,
   ILogInResponseType,
   ISignUpResponseType,
+  IVoteToCandidateResponseType,
 } from "../interfaces/responseType";
 
 function signUpAPI(data: ISignUpData) {
@@ -45,7 +51,9 @@ function addCandidateNameAPI(data: IAddCandidateNameData) {
 function currentVoteStatusAPI(data: null) {
   return axios.get("/api/votes/");
 }
-
+function voteToCandidateAPI(data: IVoteToCandidateData) {
+  return axios.post(`api/votes/?candidate=${data.id}`);
+}
 function* signUp(action: ISignUpAction) {
   try {
     // action.data is form object data (front signup form)
@@ -102,6 +110,25 @@ function* addCandidateName(action: IAddCandidateNameAction) {
     });
   }
 }
+function* voteToCandidate(action: IVoteToCandidateAction) {
+  try {
+    const result: IVoteToCandidateResponseType = yield call(
+      voteToCandidateAPI,
+      action.data
+    );
+    console.log(result);
+    yield put({
+      type: VOTE_TO_CANDIDATE_SUCCESS,
+      data: result.data,
+    });
+  } catch (error: any) {
+    console.error(error);
+    yield put({
+      type: VOTE_TO_CANDIDATE_FAILURE,
+      error: error.response.data,
+    });
+  }
+}
 
 function* currentVoteStatus(action: ICurrentVoteStatusAction) {
   try {
@@ -124,20 +151,21 @@ function* currentVoteStatus(action: ICurrentVoteStatusAction) {
 }
 
 function* watchSignUp() {
-  console.log("회원가입 요청 사가 실행");
   yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 function* watchLogIn() {
-  console.log("로그인 요청 사가 실행");
   yield takeLatest(LOG_IN_REQUEST, logIn);
 }
 
 function* watchAddCandidateName() {
-  console.log("후보자 추가 요청 사가 실행");
   yield takeLatest(ADD_CANDIDATE_NAME_REQUEST, addCandidateName);
 }
 function* watchCurrentVoteStatus() {
   yield takeLatest(CURRENT_VOTE_STATUS_REQUEST, currentVoteStatus);
+}
+
+function* watchVoteToCandidate() {
+  yield takeLatest(VOTE_TO_CANDIDATE_REQUEST, voteToCandidate);
 }
 
 export default function* userSaga() {
@@ -146,5 +174,6 @@ export default function* userSaga() {
     fork(watchLogIn),
     fork(watchAddCandidateName),
     fork(watchCurrentVoteStatus),
+    fork(watchVoteToCandidate),
   ]);
 }

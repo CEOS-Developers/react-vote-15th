@@ -11,3 +11,7 @@ export interface ILogInData {
 export interface IAddCandidateNameData {
   name: string;
 }
+
+export interface IVoteToCandidateData {
+  id: string;
+}

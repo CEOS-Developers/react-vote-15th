@@ -31,7 +31,7 @@ const Login = () => {
         username,
         password,
       };
-      console.log(data);
+
       dispatch({
         type: LOG_IN_REQUEST,
         data,
