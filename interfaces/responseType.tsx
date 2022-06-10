@@ -41,6 +41,18 @@ export interface IAddCandidateNameResponseType {
   config: {};
   request: XMLHttpRequest;
 }
+
+export interface IVoteToCandidateResponseType {
+  data: {
+    message: string;
+  };
+  status: number;
+  statusText: string;
+  headers: {};
+  config: {};
+  request: XMLHttpRequest;
+}
+
 export interface ICurrentVoteStatusResponseType {
   data: ICurrentVoteStatus;
   status: number;

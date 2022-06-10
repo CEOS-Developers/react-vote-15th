@@ -10,6 +10,7 @@ import {
 } from "../../reducers";
 import { useCallback, useEffect } from "react";
 import AddCandidateModal from "../../components/AddCandidateModal";
+import usePush from "../../hooks/usePush";
 
 const Vote = () => {
   const {
@@ -22,7 +23,8 @@ const Vote = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
-  const backHome = () => {
+
+  const pushHome = () => {
     router.push("/").then((r) => null);
   };
   const pushVoteGet = () => {
@@ -51,12 +53,16 @@ const Vote = () => {
     <>
       <AppLayout>
         <Wrapper>
-          <button onClick={backHome}>↩️</button>
+          <button onClick={pushHome}>↩️</button>
           <CandidateListContainer>
             {currentVoteStatus?.map((user) => {
               return (
                 <>
-                  <CandidateList key={user.id} name={user.name} />
+                  <CandidateList
+                    key={user.id + `new Date()`}
+                    name={user.name}
+                    candidateNumber={user.id}
+                  />
                 </>
               );
             })}
@@ -64,7 +70,6 @@ const Vote = () => {
           <ButtonsContainer>
             <button onClick={handleAddCandidateModal}>후보자 추가</button>
             {handleCandidateModal && <AddCandidateModal />}
-            <button>투표하기</button>
             <button onClick={pushVoteGet}>현황 확인</button>
             <button onClick={pushVoteResult}>결과 확인</button>
           </ButtonsContainer>
