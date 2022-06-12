@@ -54,6 +54,8 @@ function currentVoteStatusAPI(data: null) {
 function voteToCandidateAPI(data: IVoteToCandidateData) {
   return axios.post(`api/votes/?candidate=${data.id}`);
 }
+console.log("hi");
+
 function* signUp(action: ISignUpAction) {
   try {
     // action.data is form object data (front signup form)
@@ -97,7 +99,7 @@ function* addCandidateName(action: IAddCandidateNameAction) {
       addCandidateNameAPI,
       action.data
     );
-    console.log(result.data);
+
     yield put({
       type: ADD_CANDIDATE_NAME_SUCCESS,
       data: result.data,
@@ -116,7 +118,7 @@ function* voteToCandidate(action: IVoteToCandidateAction) {
       voteToCandidateAPI,
       action.data
     );
-    console.log(result);
+
     yield put({
       type: VOTE_TO_CANDIDATE_SUCCESS,
       data: result.data,
@@ -136,7 +138,7 @@ function* currentVoteStatus(action: ICurrentVoteStatusAction) {
       currentVoteStatusAPI,
       action.data
     );
-    console.log(result.data);
+
     yield put({
       type: CURRENT_VOTE_STATUS_SUCCESS,
       data: result.data,

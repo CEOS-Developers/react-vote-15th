@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { IState, LOGGED_IN, SIGN_UP_REQUEST } from "../reducers";
+import {
+  IState,
+  LOG_IN_REQUEST,
+  LOGGED_IN,
+  SIGN_UP_REQUEST,
+} from "../reducers";
 
 const Signup = () => {
   const { mode, user, signUpError } = useSelector<IState, IState>(
@@ -51,7 +56,7 @@ const Signup = () => {
     if (user) {
       router
         .push("/")
-        .then((r) => alert("회원가입이 완료 됐습니다. 바로 로그인 됩니다."));
+        .then((r) => alert("회원 가입이 됐습니다. 바로 이동합니다."));
     }
     if (signUpError) {
       alert("값이 잘못 입력 됐습니다.");
