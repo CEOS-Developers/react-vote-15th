@@ -53,11 +53,11 @@ const Signup = () => {
   );
 
   useEffect(() => {
-    if (user) {
-      router
-        .push("/")
-        .then((r) => alert("회원 가입이 됐습니다. 바로 이동합니다."));
-    }
+    // if (user) {
+    //   router
+    //     .push("/")
+    //     .then((r) => alert("회원 가입이 됐습니다. 바로 이동합니다."));
+    // }
     if (signUpError) {
       alert("값이 잘못 입력 됐습니다.");
     }

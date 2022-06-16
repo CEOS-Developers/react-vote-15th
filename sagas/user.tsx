@@ -38,13 +38,13 @@ import {
   IVoteToCandidateResponseType,
 } from "../interfaces/responseType";
 
+///33333333
 function signUpAPI(data: ISignUpData) {
   return axios.post("/api/signup/", data);
 }
 function logInAPI(data: ILogInData) {
   return axios.post("/api/login/", data);
 }
-
 function addCandidateNameAPI(data: IAddCandidateNameData) {
   return axios.post("/api/candidates/", data);
 }
@@ -54,15 +54,16 @@ function currentVoteStatusAPI(data: null) {
 function voteToCandidateAPI(data: IVoteToCandidateData) {
   return axios.post(`api/votes/?candidate=${data.id}`);
 }
-console.log("hi");
 
+////2222222
 function* signUp(action: ISignUpAction) {
   try {
     // action.data is form object data (front signup form)
     // data is object from response
     const result: ISignUpResponseType = yield call(signUpAPI, action.data);
-    const { access, refresh } = result.data;
-    axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
+    console.log(result.data);
+    // const { access, refresh } = result.data;
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${}`;
     yield put({
       type: SIGN_UP_SUCCESS,
       data: result.data,
@@ -92,7 +93,6 @@ function* logIn(action: ILogInAction) {
     });
   }
 }
-
 function* addCandidateName(action: IAddCandidateNameAction) {
   try {
     const result: IAddCandidateNameResponseType = yield call(
@@ -131,7 +131,6 @@ function* voteToCandidate(action: IVoteToCandidateAction) {
     });
   }
 }
-
 function* currentVoteStatus(action: ICurrentVoteStatusAction) {
   try {
     const result: ICurrentVoteStatusResponseType = yield call(
@@ -152,20 +151,19 @@ function* currentVoteStatus(action: ICurrentVoteStatusAction) {
   }
 }
 
+//11111
 function* watchSignUp() {
   yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 function* watchLogIn() {
   yield takeLatest(LOG_IN_REQUEST, logIn);
 }
-
 function* watchAddCandidateName() {
   yield takeLatest(ADD_CANDIDATE_NAME_REQUEST, addCandidateName);
 }
 function* watchCurrentVoteStatus() {
   yield takeLatest(CURRENT_VOTE_STATUS_REQUEST, currentVoteStatus);
 }
-
 function* watchVoteToCandidate() {
   yield takeLatest(VOTE_TO_CANDIDATE_REQUEST, voteToCandidate);
 }
