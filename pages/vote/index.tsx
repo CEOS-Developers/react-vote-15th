@@ -27,9 +27,7 @@ const Vote = () => {
   const pushHome = () => {
     router.push("/").then((r) => null);
   };
-  const pushVoteGet = () => {
-    router.push("/vote/get").then((r) => null);
-  };
+
   const pushVoteResult = () => {
     router.push("/vote/result").then((r) => null);
   };
@@ -70,7 +68,6 @@ const Vote = () => {
           <ButtonsContainer>
             <button onClick={handleAddCandidateModal}>후보자 추가</button>
             {handleCandidateModal && <AddCandidateModal />}
-            <button onClick={pushVoteGet}>현황 확인</button>
             <button onClick={pushVoteResult}>결과 확인</button>
           </ButtonsContainer>
         </Wrapper>

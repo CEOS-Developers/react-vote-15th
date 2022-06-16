@@ -4,7 +4,7 @@ import axios from "axios";
 import userSaga from "./user";
 import { backUrl } from "../config/config";
 
-axios.defaults.baseURL = backUrl;
+// axios.defaults.baseURL = backUrl;
 
 export function* rootSaga() {
   yield all([fork(userSaga)]);
