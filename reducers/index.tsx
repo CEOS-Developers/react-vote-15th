@@ -121,8 +121,9 @@ export const reducer = (state: IState = initialState, action: AnyAction) => {
         draft.voteToCandidateError = false;
         break;
       case VOTE_TO_CANDIDATE_SUCCESS:
-        draft.voteToCandidateLoading = false;
-        draft.voteToCandidateDone = true;
+          draft.voteToCandidateLoading = false;
+          draft.voteToCandidateDone = true;
+          draft.user = action.data;
         break;
       case VOTE_TO_CANDIDATE_FAILURE:
         draft.voteToCandidateLoading = false;

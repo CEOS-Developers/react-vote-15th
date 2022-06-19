@@ -22,7 +22,7 @@ const configureStore = (context: Context) => {
       : composeWithDevTools(applyMiddleware(...middlewares));
   // 에디터에서 줄 긋는 거라서 무시 가능, 저거 줄 나오게 만든 redux 관리자가 스택 오버플로우에 무시 해도 된다고 글 썼음
   const store = createStore(reducer, enhancer);
-  store.sagaTask = sagaMiddleware.run(rootSaga);
+  store.sagaTask = sagaMiddleware?.run(rootSaga);
   return store;
 };
 
