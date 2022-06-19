@@ -1,16 +1,16 @@
-import AppLayout from "../../components/AppLayout";
-import styled from "styled-components";
-import { useRouter } from "next/router";
-import CandidateList from "../../components/CandidateList";
-import { useDispatch, useSelector } from "react-redux";
+import AppLayout from '../../components/AppLayout';
+import styled from 'styled-components';
+import { useRouter } from 'next/router';
+import CandidateList from '../../components/CandidateList';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   CURRENT_VOTE_STATUS_REQUEST,
   HANDLE_CANDIDATE_MODAL,
   IState,
-} from "../../reducers";
-import { useCallback, useEffect } from "react";
-import AddCandidateModal from "../../components/AddCandidateModal";
-import usePush from "../../hooks/usePush";
+} from '../../reducers';
+import { useCallback, useEffect } from 'react';
+import AddCandidateModal from '../../components/AddCandidateModal';
+import usePush from '../../hooks/usePush';
 
 const Vote = () => {
   const {
@@ -25,11 +25,11 @@ const Vote = () => {
   const router = useRouter();
 
   const pushHome = () => {
-    router.push("/").then((r) => null);
+    router.push('/').then((r) => null);
   };
 
   const pushVoteResult = () => {
-    router.push("/vote/result").then((r) => null);
+    router.push('/vote/result').then((r) => null);
   };
 
   const handleAddCandidateModal = useCallback(() => {
@@ -45,10 +45,7 @@ const Vote = () => {
       type: CURRENT_VOTE_STATUS_REQUEST,
       data: null,
     });
-
   }, [addCandidateNameDone]);
-
-  console.log(currentVoteStatus);
 
   return (
     <>

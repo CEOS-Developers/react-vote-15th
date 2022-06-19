@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import { useRouter } from "next/router";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IState } from "../reducers";
+import { FC, useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../reducers';
 
 type Props = {
   children: React.ReactNode;
@@ -34,7 +34,7 @@ const AppLayout: FC<Props> = ({ children }) => {
 
   const changeMode = (): void => {
     dispatch({
-      type: "CHANGE_MODE",
+      type: 'CHANGE_MODE',
     });
   };
 
@@ -69,6 +69,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  overflow: auto;
 `;
 
 export default AppLayout;
