@@ -18,6 +18,10 @@ const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
     const data = {
       id,
     };
+
+    console.log(result);
+    console.log(id);
+
     if (result) {
       if (user?.is_voted) {
         return alert("이미 투표 하셨습니다 😭");

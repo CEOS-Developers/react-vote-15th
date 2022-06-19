@@ -52,7 +52,9 @@ function currentVoteStatusAPI(data: null) {
   return axios.get("/api/votes/");
 }
 function voteToCandidateAPI(data: IVoteToCandidateData) {
-  return axios.post(`api/votes/?candidate=${data.id}`);
+  return axios.post(`api/votes/?candidate=${data.id}`, {
+      "candidate": data.id
+  });
 }
 
 ////2222222
@@ -62,8 +64,8 @@ function* signUp(action: ISignUpAction) {
     // data is object from response
     const result: ISignUpResponseType = yield call(signUpAPI, action.data);
     console.log(result.data);
-    // const { access, refresh } = result.data;
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${}`;
+    const { access, refresh } = result.data;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
     yield put({
       type: SIGN_UP_SUCCESS,
       data: result.data,
@@ -119,6 +121,7 @@ function* voteToCandidate(action: IVoteToCandidateAction) {
       action.data
     );
 
+    console.log(result);
     yield put({
       type: VOTE_TO_CANDIDATE_SUCCESS,
       data: result.data,

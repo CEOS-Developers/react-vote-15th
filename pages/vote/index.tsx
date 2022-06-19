@@ -45,7 +45,10 @@ const Vote = () => {
       type: CURRENT_VOTE_STATUS_REQUEST,
       data: null,
     });
+
   }, [addCandidateNameDone]);
+
+  console.log(currentVoteStatus);
 
   return (
     <>
