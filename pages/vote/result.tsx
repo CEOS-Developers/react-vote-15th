@@ -16,6 +16,7 @@ const Result = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
+  const frontLeader = currentVoteStatus[0];
 
   useEffect(() => {
     dispatch({
@@ -34,20 +35,29 @@ const Result = () => {
     <>
       <AppLayout>
         <button onClick={backToHome}>↩️</button>
+
         <h1>투표 결과 보기 </h1>
-        <ResultCandidateListContainer>
-          {currentVoteStatus?.map((user) => {
-            return (
-              <>
-                <ResultCandidateList
-                  key={user.id + `new Date()`}
-                  name={user.name}
-                  count={user.count}
-                />
-              </>
-            );
-          })}
-        </ResultCandidateListContainer>
+        <>
+          <h3>프론트엔드 파트장</h3>
+          <ElectedCandidate frontLeaderName={frontLeader.name} />
+        </>
+
+        <>
+          <h3>투표 결과 상세</h3>
+          <ResultCandidateListContainer>
+            {currentVoteStatus?.map((user) => {
+              return (
+                <>
+                  <ResultCandidateList
+                    key={user.id + `new Date()`}
+                    name={user.name}
+                    count={user.count}
+                  />
+                </>
+              );
+            })}
+          </ResultCandidateListContainer>
+        </>
       </AppLayout>
     </>
   );
