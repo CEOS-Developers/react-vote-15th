@@ -5,6 +5,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../reducers';
 import Clock from './common/Clock';
+import { IoChevronBack } from 'react-icons/io5';
 
 type Props = {
   children: React.ReactNode;
@@ -43,7 +44,9 @@ const AppLayout: FC<Props> = ({ children }) => {
     <>
       <Wrapper isMobile>
         <Header>
-          <button onClick={changeMode}>모드 변경</button>
+          <BackButton onClick={changeMode}>
+            <IoChevronBack />
+          </BackButton>
           <Clock />
         </Header>
         <Container>{children}</Container>
@@ -75,6 +78,11 @@ const Container = styled.div`
   flex-direction: column;
   padding: 0 20px;
   overflow: auto;
+`;
+
+const BackButton = styled.button`
+  margin-top: 4px;
+  font-size: 20px;
 `;
 
 export default AppLayout;
