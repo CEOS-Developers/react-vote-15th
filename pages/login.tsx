@@ -58,7 +58,7 @@ const Login = () => {
           <LogInFormStyle onSubmit={submitLogInForm} action="">
             <TextInput
               type="text"
-              placeholder="사용자이름"
+              placeholder="아이디"
               onChange={onChangeUsername}
               required
             />
