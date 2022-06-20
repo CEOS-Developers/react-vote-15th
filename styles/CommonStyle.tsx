@@ -6,14 +6,26 @@ export const PageTitle = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  padding-left: 20px;
 `;
 
-export const TitleInput = styled.input`
+export const TextInput = styled.input`
   padding-left: 0.5rem;
-  border: 0.08rem solid #c2bbbb;
-  border-radius: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: lighter;
+  border: 2px solid #f7d553;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 400;
   margin: 0.5rem;
   height: 2.5rem;
+`;
+
+export const AccessButton = styled.button`
+  margin: auto;
+  background-color: #e3af41;
+  height: 50px;
+  border-radius: 15px;
+  width: 300px;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
 `;

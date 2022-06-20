@@ -8,6 +8,7 @@ import ElectedCandidate from 'components/result/ElectedCandidate';
 import ResultCandidateList from 'components/result/ResultCandidateList';
 import { current, setUseProxies } from 'immer';
 import React from 'react';
+import Header from 'components/common/Header';
 
 const Result = () => {
   const { mode, currentVoteStatus } = useSelector<IState, IState>(
@@ -37,7 +38,7 @@ const Result = () => {
   return (
     <>
       <AppLayout>
-        <button onClick={backToHome}>↩️</button>
+        <Header backButton={backToHome} />
 
         <h1>투표 결과 보기 </h1>
         <>
