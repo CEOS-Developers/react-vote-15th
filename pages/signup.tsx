@@ -10,7 +10,7 @@ import {
   LOGGED_IN,
   SIGN_UP_REQUEST,
 } from '../reducers';
-import { AccessButton, TextInput } from 'styles/CommonStyle';
+import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
 import Header from 'components/common/Header';
 
 const Signup = () => {
@@ -69,6 +69,7 @@ const Signup = () => {
       <AppLayout>
         <Header backButton={backHome} />
         <Wrapper>
+          <PageTitle>Sign Up</PageTitle>
           <LogInFormStyle onSubmit={submitSignUpForm} action="">
             <TextInput
               type="text"
@@ -101,7 +102,9 @@ const Signup = () => {
             {passwordError && (
               <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</div>
             )}
-            <AccessButton>회원가입하기</AccessButton>
+            <StyledButton>
+              <AccessButton>회원가입하기</AccessButton>
+            </StyledButton>
           </LogInFormStyle>
         </Wrapper>
       </AppLayout>
@@ -115,11 +118,18 @@ const Wrapper = styled.div`
   height: 100%;
   margin: auto;
   padding: 0 12px 0 12px;
+  grid-template-rows: 2fr 7fr;
 `;
 
 const LogInFormStyle = styled.form`
   display: flex;
   flex-direction: column;
+  padding: 0 15px 0 15px;
+`;
+
+const StyledButton = styled.div`
+  margin-top: 50px;
+  text-align: center;
 `;
 
 export default Signup;

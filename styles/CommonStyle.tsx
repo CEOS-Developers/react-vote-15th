@@ -6,6 +6,7 @@ export const PageTitle = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  padding-left: 20px;
 `;
 
 export const TextInput = styled.input`

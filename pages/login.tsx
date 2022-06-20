@@ -55,7 +55,6 @@ const Login = () => {
         <Header backButton={backHome} />
         <Wrapper>
           <PageTitle>Login</PageTitle>
-
           <LogInFormStyle onSubmit={submitLogInForm} action="">
             <TextInput
               type="text"
@@ -84,12 +83,14 @@ const Wrapper = styled.div`
   height: 100%;
   margin: auto;
   padding: 0 12px 0 12px;
+  grid-template-rows: 2fr 5.5fr 1.5fr;
 `;
 
 const LogInFormStyle = styled.form`
   height: 300px;
   display: flex;
   flex-direction: column;
+  padding: 0 15px 0 15px;
 `;
 
 export default Login;

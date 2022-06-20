@@ -42,77 +42,86 @@ const MainVoteList = () => {
 
   return (
     <>
-      <Wrapper>
-        <Header backButton={backHome} />
-        <Contents>
-          <PageTitle>Vote</PageTitle>
-          <CardContainer>
-            <div>
-              <Span active front>
-                A moment{' '}
-              </Span>
-              <Span active>ago</Span>
-            </div>
-            <MainVoteCard onClick={askLogin} active>
-              <VoteThumbNailContainer>
-                <VoteThumbNail>
-                  <Image
-                    src={frontUrl}
-                    alt="front"
-                    width="50px"
-                    height="50px"
-                    style={ImgStyle}
-                  />
-                </VoteThumbNail>
-              </VoteThumbNailContainer>
-              <VoteName>{names.first}</VoteName>
-            </MainVoteCard>
-          </CardContainer>
-          <CardContainer>
-            <div>
-              <Span front>12 minutes </Span>
-              <Span>ago</Span>
-            </div>
-            <MainVoteCard>
-              <VoteThumbNailContainer>
-                <VoteThumbNail>
-                  <Image
-                    src={backUrl}
-                    style={ImgStyle}
-                    alt="back"
-                    width="100%"
-                    height="100%"
-                  />
-                </VoteThumbNail>
-              </VoteThumbNailContainer>
-              <VoteName>{names.second}</VoteName>
-            </MainVoteCard>
-          </CardContainer>
-          <CardContainer>
-            <div>
-              <Span front>5 hours </Span>
-              <Span>ago</Span>
-            </div>
-            <MainVoteCard>
-              <VoteThumbNailContainer>
-                <VoteThumbNail>
-                  <Image
-                    src={ceosUrl}
-                    style={ImgStyle}
-                    alt="ceos"
-                    width="50px"
-                    height="50px"
-                  />
-                </VoteThumbNail>
-              </VoteThumbNailContainer>
-              <VoteName>{names.third}</VoteName>
-            </MainVoteCard>
-          </CardContainer>
-        </Contents>
-      </Wrapper>
+      <Header backButton={backHome} />
+      <Container>
+        <Wrapper>
+          <Contents>
+            <PageTitle>Vote</PageTitle>
+            <CardContainer>
+              <div>
+                <Span active front>
+                  A moment{' '}
+                </Span>
+                <Span active>ago</Span>
+              </div>
+              <MainVoteCard onClick={askLogin} active>
+                <VoteThumbNailContainer>
+                  <VoteThumbNail>
+                    <Image
+                      src={frontUrl}
+                      alt="front"
+                      width="50px"
+                      height="50px"
+                      style={ImgStyle}
+                    />
+                  </VoteThumbNail>
+                </VoteThumbNailContainer>
+                <VoteName>{names.first}</VoteName>
+              </MainVoteCard>
+            </CardContainer>
+            <CardContainer>
+              <div>
+                <Span front>12 minutes </Span>
+                <Span>ago</Span>
+              </div>
+              <MainVoteCard>
+                <VoteThumbNailContainer>
+                  <VoteThumbNail>
+                    <Image
+                      src={backUrl}
+                      style={ImgStyle}
+                      alt="back"
+                      width="100%"
+                      height="100%"
+                    />
+                  </VoteThumbNail>
+                </VoteThumbNailContainer>
+                <VoteName>{names.second}</VoteName>
+              </MainVoteCard>
+            </CardContainer>
+            <CardContainer>
+              <div>
+                <Span front>5 hours </Span>
+                <Span>ago</Span>
+              </div>
+              <MainVoteCard>
+                <VoteThumbNailContainer>
+                  <VoteThumbNail>
+                    <Image
+                      src={ceosUrl}
+                      style={ImgStyle}
+                      alt="ceos"
+                      width="50px"
+                      height="50px"
+                    />
+                  </VoteThumbNail>
+                </VoteThumbNailContainer>
+                <VoteName>{names.third}</VoteName>
+              </MainVoteCard>
+            </CardContainer>
+          </Contents>
+        </Wrapper>
+      </Container>
     </>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  overflow: auto;
+`;
 
 const ImgStyle = {
   borderRadius: '50%',
