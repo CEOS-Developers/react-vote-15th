@@ -72,7 +72,7 @@ const Result = () => {
 };
 
 const ResultCandidateListContainer = styled.div`
-  height: 350px;
+  height: 400px;
   overflow: scroll;
 `;
 

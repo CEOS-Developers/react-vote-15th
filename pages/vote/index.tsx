@@ -46,17 +46,7 @@ const Vote = () => {
       type: CURRENT_VOTE_STATUS_REQUEST,
       data: null,
     });
-  }, [addCandidateNameDone]);
-
-  console.log(currentVoteStatus);
-
-  useEffect(() => {
-    // 제일 처음에 로드 되거나 변화가 생기면 currentVoteStatus 불러야 함.
-    dispatch({
-      type: CURRENT_VOTE_STATUS_REQUEST,
-      data: null,
-    });
-  }, [currentVoteStatus]);
+  }, [addCandidateNameDone, currentVoteStatus]);
 
   console.log(currentVoteStatus);
 
@@ -95,7 +85,7 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 const CandidateListContainer = styled.div`
-  height: 350px;
+  height: 500px;
   overflow: scroll;
 `;
 const ButtonsContainer = styled.div``;
