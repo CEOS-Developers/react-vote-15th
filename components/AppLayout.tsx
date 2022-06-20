@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../reducers';
+import Clock from './common/Clock';
 
 type Props = {
   children: React.ReactNode;
@@ -43,7 +44,7 @@ const AppLayout: FC<Props> = ({ children }) => {
       <Wrapper isMobile>
         <Header>
           <button onClick={changeMode}>모드 변경</button>
-          <div>시계</div>
+          <Clock />
         </Header>
         <Container>{children}</Container>
       </Wrapper>
@@ -67,6 +68,7 @@ const Header = styled.div`
   background-color: #fdf6d8;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  padding: 0 20px 0 17px;
 `;
 const Container = styled.div`
   display: flex;

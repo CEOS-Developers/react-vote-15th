@@ -7,3 +7,13 @@ export const PageTitle = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const TitleInput = styled.input`
+  padding-left: 0.5rem;
+  border: 0.08rem solid #c2bbbb;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  margin: 0.5rem;
+  height: 2.5rem;
+`;
