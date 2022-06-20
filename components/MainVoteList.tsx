@@ -7,6 +7,7 @@ import frontUrl from '../public/front.png';
 import backUrl from '../public/back.png';
 import ceosUrl from '../public/ceos.png';
 import { PageTitle } from 'styles/CommonStyle';
+import Header from './common/Header';
 
 const MainVoteList = () => {
   interface INames {
@@ -35,9 +36,14 @@ const MainVoteList = () => {
     }
   };
 
+  const backHome = () => {
+    router.push('/').then((r) => null);
+  };
+
   return (
     <>
       <Wrapper>
+        <Header backButton={backHome} />
         <Contents>
           <PageTitle>Vote</PageTitle>
           <CardContainer>
@@ -117,7 +123,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   margin: auto;
-  padding: 0 12px 0 12px;
 `;
 const MainVoteCard = styled.div<{ active?: boolean; mode?: boolean }>`
   width: 100%;

@@ -12,6 +12,7 @@ import { useCallback, useEffect } from 'react';
 import AddCandidateModal from '../../components/vote/AddCandidateModal';
 import usePush from '../../hooks/usePush';
 import React from 'react';
+import Header from 'components/common/Header';
 
 const Vote = () => {
   const {
@@ -53,8 +54,8 @@ const Vote = () => {
   return (
     <>
       <AppLayout>
+        <Header backButton={pushHome} />
         <Wrapper>
-          <button onClick={pushHome}>↩️</button>
           <CandidateListContainer>
             {currentVoteStatus?.map((user) => {
               return (

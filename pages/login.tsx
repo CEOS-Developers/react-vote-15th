@@ -1,26 +1,28 @@
-import AppLayout from "../components/AppLayout";
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IState, LOG_IN_REQUEST } from "../reducers";
-import useInput from "../hooks/useInput";
+import AppLayout from '../components/AppLayout';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState, LOG_IN_REQUEST } from '../reducers';
+import useInput from '../hooks/useInput';
+import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
+import Header from 'components/common/Header';
 
 const Login = () => {
   const { mode, user, logInError } = useSelector<IState, IState>(
     (state) => state
   );
 
-  const [username, onChangeUsername] = useInput("");
-  const [password, onChangePassword] = useInput("");
+  const [username, onChangeUsername] = useInput('');
+  const [password, onChangePassword] = useInput('');
 
   const dispatch = useDispatch();
   const router = useRouter();
   const backHome = () => {
-    router.push("/").then((r) => null);
+    router.push('/').then((r) => null);
   };
   const askSignup = (): void => {
-    router.push("/signup").then((r) => null);
+    router.push('/signup').then((r) => null);
   };
 
   const submitLogInForm = useCallback(
@@ -41,31 +43,33 @@ const Login = () => {
   );
   useEffect(() => {
     if (user) {
-      router.push("/").then(() => null);
+      router.push('/').then(() => null);
     }
     if (logInError) {
-      alert("아이디 비밀번호를 다시 확인해주세요");
+      alert('아이디 비밀번호를 다시 확인해주세요');
     }
   }, [user, logInError]);
   return (
     <>
       <AppLayout>
+        <Header backButton={backHome} />
         <Wrapper>
-          <button onClick={backHome}>↩️</button>
+          <PageTitle>Login</PageTitle>
+
           <LogInFormStyle onSubmit={submitLogInForm} action="">
-            <input
+            <TextInput
               type="text"
               placeholder="사용자이름"
               onChange={onChangeUsername}
               required
             />
-            <input
+            <TextInput
               type="password"
               placeholder="비밀번호"
               onChange={onChangePassword}
               required
             />
-            <button>로그인</button>
+            <AccessButton>로그인</AccessButton>
           </LogInFormStyle>
           <button onClick={askSignup}>회원이 아니신가요?</button>
         </Wrapper>
@@ -75,11 +79,15 @@ const Login = () => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: 0 12px 0 12px;
 `;
 
 const LogInFormStyle = styled.form`
+  height: 300px;
   display: flex;
   flex-direction: column;
 `;
