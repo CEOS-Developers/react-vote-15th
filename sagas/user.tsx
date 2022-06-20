@@ -1,4 +1,4 @@
-import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import {
   ADD_CANDIDATE_NAME_FAILURE,
   ADD_CANDIDATE_NAME_REQUEST,
@@ -15,45 +15,45 @@ import {
   VOTE_TO_CANDIDATE_FAILURE,
   VOTE_TO_CANDIDATE_REQUEST,
   VOTE_TO_CANDIDATE_SUCCESS,
-} from "../reducers";
-import axios from "axios";
+} from '../reducers';
+import axios from 'axios';
 import {
   IAddCandidateNameAction,
   ICurrentVoteStatusAction,
   ILogInAction,
   ISignUpAction,
   IVoteToCandidateAction,
-} from "../interfaces/actionType";
+} from '../interfaces/actionType';
 import {
   ISignUpData,
   ILogInData,
   IAddCandidateNameData,
   IVoteToCandidateData,
-} from "../interfaces/dataType";
+} from '../interfaces/dataType';
 import {
   IAddCandidateNameResponseType,
   ICurrentVoteStatusResponseType,
   ILogInResponseType,
   ISignUpResponseType,
   IVoteToCandidateResponseType,
-} from "../interfaces/responseType";
+} from '../interfaces/responseType';
 
 ///33333333
 function signUpAPI(data: ISignUpData) {
-  return axios.post("/api/signup/", data);
+  return axios.post('/api/signup/', data);
 }
 function logInAPI(data: ILogInData) {
-  return axios.post("/api/login/", data);
+  return axios.post('/api/login/', data);
 }
 function addCandidateNameAPI(data: IAddCandidateNameData) {
-  return axios.post("/api/candidates/", data);
+  return axios.post('/api/candidates/', data);
 }
 function currentVoteStatusAPI(data: null) {
-  return axios.get("/api/votes/");
+  return axios.get('/api/votes/');
 }
 function voteToCandidateAPI(data: IVoteToCandidateData) {
   return axios.post(`api/votes/?candidate=${data.id}`, {
-      "candidate": data.id
+    candidate: data.id,
   });
 }
 
@@ -65,7 +65,7 @@ function* signUp(action: ISignUpAction) {
     const result: ISignUpResponseType = yield call(signUpAPI, action.data);
     console.log(result.data);
     const { access, refresh } = result.data;
-    axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${access}`;
     yield put({
       type: SIGN_UP_SUCCESS,
       data: result.data,
@@ -82,7 +82,7 @@ function* logIn(action: ILogInAction) {
   try {
     const result: ILogInResponseType = yield call(logInAPI, action.data);
     const { access, refresh } = result.data;
-    axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${access}`;
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.data,
@@ -122,6 +122,7 @@ function* voteToCandidate(action: IVoteToCandidateAction) {
     );
 
     console.log(result);
+
     yield put({
       type: VOTE_TO_CANDIDATE_SUCCESS,
       data: result.data,

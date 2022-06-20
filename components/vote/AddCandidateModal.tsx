@@ -1,12 +1,12 @@
-import useInput from "../hooks/useInput";
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import useInput from '../../hooks/useInput';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ADD_CANDIDATE_NAME_REQUEST,
   CURRENT_VOTE_STATUS_REQUEST,
   IState,
-} from "../reducers";
-import Modal from "./Modal";
+} from '../../reducers';
+import Modal from './Modal';
 
 const AddCandidateModal = () => {
   const {
@@ -17,7 +17,7 @@ const AddCandidateModal = () => {
     addCandidateNameDone,
   } = useSelector<IState, IState>((state) => state);
   const dispatch = useDispatch();
-  const [candidateName, onChangeCandidateName] = useInput("");
+  const [candidateName, onChangeCandidateName] = useInput('');
 
   const onSubmitCandidateName = useCallback(
     (e: React.SyntheticEvent) => {

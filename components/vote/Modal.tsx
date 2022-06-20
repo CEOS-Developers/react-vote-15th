@@ -1,7 +1,7 @@
-import React, { FC, useCallback } from "react";
-import styled from "styled-components";
-import { HANDLE_CANDIDATE_MODAL } from "../reducers";
-import { useDispatch } from "react-redux";
+import React, { FC, useCallback } from 'react';
+import styled from 'styled-components';
+import { HANDLE_CANDIDATE_MODAL } from '../../reducers';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   children: React.ReactNode;

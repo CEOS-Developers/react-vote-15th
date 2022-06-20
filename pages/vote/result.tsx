@@ -3,26 +3,29 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { CURRENT_VOTE_STATUS_REQUEST, IState } from '../../reducers';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ElectedCandidate from 'components/result/ElectedCandidate';
 import ResultCandidateList from 'components/result/ResultCandidateList';
-import { setUseProxies } from 'immer';
+import { current, setUseProxies } from 'immer';
+import React from 'react';
 
 const Result = () => {
-  const { mode, handleCandidateModal, currentVoteStatus, user } = useSelector<
-    IState,
-    IState
-  >((state) => state);
+  const { mode, currentVoteStatus } = useSelector<IState, IState>(
+    (state) => state
+  );
 
   const dispatch = useDispatch();
   const router = useRouter();
-  const frontLeader = currentVoteStatus[0];
+  const [frontLeader, setFrontLeader] = useState(currentVoteStatus[0]);
+  const [sameCount, setSameCount] = useState('');
 
+  // 최다 득표자가 2명이상일 때 처리. 근데 useEffect 무한루프..
   useEffect(() => {
-    dispatch({
-      type: CURRENT_VOTE_STATUS_REQUEST,
-      data: null,
-    });
+    if (currentVoteStatus[0].count === currentVoteStatus[1].count) {
+      setSameCount('최다 득표자가 2명 이상입니다!');
+    } else {
+      setFrontLeader(currentVoteStatus[0]);
+    }
   }, []);
 
   console.log(currentVoteStatus);
@@ -39,7 +42,12 @@ const Result = () => {
         <h1>투표 결과 보기 </h1>
         <>
           <h3>프론트엔드 파트장</h3>
-          <ElectedCandidate frontLeaderName={frontLeader.name} />
+          {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
+          {sameCount === '' ? (
+            <ElectedCandidate frontLeaderName={frontLeader.name} />
+          ) : (
+            <ElectedCandidate frontLeaderName={sameCount} />
+          )}
         </>
 
         <>
@@ -68,4 +76,4 @@ const ResultCandidateListContainer = styled.div`
   overflow: scroll;
 `;
 
-export default Result;
+export default React.memo(Result);
