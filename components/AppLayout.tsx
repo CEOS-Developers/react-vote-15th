@@ -53,17 +53,20 @@ const AppLayout: FC<Props> = ({ children }) => {
 
 const Wrapper = styled.div<{ isMobile: boolean }>`
   width: 500px;
-  height: 500px;
+  height: 700px;
+  border-radius: 15px;
   position: relative;
   display: grid;
   grid-template-rows: 1fr 12fr;
-  -webkit-box-shadow: 5px 5px 15px -5px #000000;
-  box-shadow: 5px 5px 15px -5px #000000;
+  -webkit-box-shadow: 5px 5px 15px -5px #848281;
+  box-shadow: 5px 5px 15px -5px #848281;
 `;
 const Header = styled.div`
-  border: 2px dotted gold;
   display: flex;
   justify-content: space-between;
+  background-color: #fdf6d8;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 `;
 const Container = styled.div`
   display: flex;

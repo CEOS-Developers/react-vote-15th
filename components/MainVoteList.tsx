@@ -1,11 +1,12 @@
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { IState } from "../reducers";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import frontUrl from "../public/front.png";
-import backUrl from "../public/back.png";
-import ceosUrl from "../public/ceos.png";
+import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../reducers';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import frontUrl from '../public/front.png';
+import backUrl from '../public/back.png';
+import ceosUrl from '../public/ceos.png';
+import { PageTitle } from 'styles/CommonStyle';
 
 const MainVoteList = () => {
   interface INames {
@@ -15,56 +16,34 @@ const MainVoteList = () => {
   }
 
   const names: INames = {
-    first: "프론트장 투표",
-    second: "백엔드장 투표",
-    third: "CEOS 회장단 투표",
+    first: '프론트장 투표',
+    second: '백엔드장 투표',
+    third: 'CEOS 회장단 투표',
   };
 
   const { user, mode } = useSelector<IState, IState>((state) => state);
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const askLogin = (): void => {
     if (!user) {
-      const res = confirm("로그인이 필요합니다.");
+      const res = confirm('로그인이 필요합니다.');
       if (res) {
-        router.push("/login").then((r) => null);
+        router.push('/login').then((r) => null);
       }
     } else {
-      router.push("/vote").then((r) => null);
+      router.push('/vote').then((r) => null);
     }
   };
 
   return (
     <>
       <Wrapper>
-        <TimeLine>
-          <div></div>
-          <LineContainer>
-            <OuterCircle active>
-              <InnerCircle active />
-            </OuterCircle>
-            <Line />
-          </LineContainer>
-          <LineContainer>
-            <OuterCircle>
-              <InnerCircle />
-            </OuterCircle>
-            <Line />
-          </LineContainer>
-          <LineContainer>
-            <OuterCircle>
-              <InnerCircle />
-            </OuterCircle>
-            <Line />
-          </LineContainer>
-        </TimeLine>
         <Contents>
-          <LoggerContainer>Feed</LoggerContainer>
+          <PageTitle>Vote</PageTitle>
           <CardContainer>
             <div>
               <Span active front>
-                A moment{" "}
+                A moment{' '}
               </Span>
               <Span active>ago</Span>
             </div>
@@ -130,37 +109,30 @@ const MainVoteList = () => {
 };
 
 const ImgStyle = {
-  borderRadius: "50%",
+  borderRadius: '50%',
 };
-
-const LoggerContainer = styled.div`
-  font-size: 24px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-`;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
-
   width: 100%;
   height: 100%;
+  margin: auto;
+  padding: 0 12px 0 12px;
 `;
 const MainVoteCard = styled.div<{ active?: boolean; mode?: boolean }>`
   width: 100%;
   height: 100%;
   background: var(--bg-mode-gray);
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 3fr 3fr 1fr;
   font-size: 24px;
-  cursor: ${({ active }) => (active ? "pointer" : "not-allowed")};
-  border-radius: 12px;
+  cursor: ${({ active }) => (active ? 'pointer' : 'not-allowed')};
+  border-radius: 15px;
 `;
 
 const Span = styled.span<{ front?: boolean; mode?: boolean; active?: boolean }>`
-  font-weight: ${({ front }) => (front ? "700" : "500")};
-  opacity: ${({ active }) => (active ? "90%" : "30%")};
+  font-weight: ${({ front }) => (front ? '700' : '500')};
+  opacity: ${({ active }) => (active ? '90%' : '30%')};
 `;
 
 const CardContainer = styled.div`
@@ -170,11 +142,7 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 3fr;
 `;
-const LineContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+
 const VoteThumbNailContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -184,26 +152,15 @@ const VoteThumbNail = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   object-fit: cover;
 `;
 
-const TimeLine = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 2fr 2fr 2fr;
-`;
 const Contents = styled.div`
   display: grid;
   grid-template-rows: 1fr 2fr 2fr 2fr;
-`;
-
-const Line = styled.div`
-  height: 100%;
-  width: 0;
-  border: 1px solid var(--bg-mode-gray);
 `;
 
 const VoteName = styled.div<{ mode?: boolean; active?: boolean }>`
@@ -211,24 +168,7 @@ const VoteName = styled.div<{ mode?: boolean; active?: boolean }>`
   justify-content: center;
   align-items: center;
   color: var(--bg-mode-black);
-`;
-
-const OuterCircle = styled.div<{ active?: boolean; mode?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: ${({ active }) =>
-    active ? "var(--bg-mode-black)" : "var(--bg-mode-gray)"};
-`;
-const InnerCircle = styled.div<{ active?: boolean; mode?: boolean }>`
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: ${({ active }) =>
-    active ? "var(--bg-mode-gray)" : "var(--bg-mode-black)"};
+  font-weight: 500;
 `;
 
 export default MainVoteList;
