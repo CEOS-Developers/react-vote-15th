@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IState, VOTE_TO_CANDIDATE_REQUEST } from "../reducers";
+import styled from 'styled-components';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  CURRENT_VOTE_STATUS_REQUEST,
+  IState,
+  VOTE_TO_CANDIDATE_REQUEST,
+} from '../../reducers';
 
 interface Props {
   name: string;
@@ -24,7 +28,7 @@ const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
 
     if (result) {
       if (user?.is_voted) {
-        return alert("이미 투표 하셨습니다 😭");
+        return alert('이미 투표 하셨습니다 😭');
       }
       dispatch({
         type: VOTE_TO_CANDIDATE_REQUEST,
