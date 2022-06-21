@@ -52,14 +52,14 @@ const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 70px;
-  padding: 5px;
+  height: 90px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   margin-bottom: 15px;
-  border-radius: 10px;
-  -webkit-box-shadow: 5px 5px 15px -5px #000000;
-  box-shadow: 5px 5px 15px -5px #000000;
+  border-radius: 15px;
+  background-color: #f6f6f4;
+  margin-bottom: 30px;
 `;
 const CandidateImg = styled.div`
   width: 100%;
@@ -67,10 +67,18 @@ const CandidateImg = styled.div`
 `;
 const CandidateInfo = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  border: 1px solid red;
 `;
 
-const Name = styled.div``;
-const VotedButton = styled.button``;
+const Name = styled.div`
+  margin: auto;
+  font-weight: 500;
+  font-size: 20px;
+`;
+const VotedButton = styled.button`
+  width: 100px;
+  background-color: #e3af41;
+  color: white;
+  font-weight: 800;
+  border-radius: 20px;
+`;
 export default CandidateList;

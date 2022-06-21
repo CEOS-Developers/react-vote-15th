@@ -133,10 +133,10 @@ const Wrapper = styled.div`
   height: 100%;
   margin: auto;
 `;
-const MainVoteCard = styled.div<{ active?: boolean; mode?: boolean }>`
+const MainVoteCard = styled.div<{ active?: boolean }>`
   width: 100%;
   height: 100%;
-  background: var(--bg-mode-gray);
+  background: #f6f6f4;
   display: grid;
   grid-template-columns: 3fr 3fr 1fr;
   font-size: 24px;
@@ -144,7 +144,7 @@ const MainVoteCard = styled.div<{ active?: boolean; mode?: boolean }>`
   border-radius: 15px;
 `;
 
-const Span = styled.span<{ front?: boolean; mode?: boolean; active?: boolean }>`
+const Span = styled.span<{ front?: boolean; active?: boolean }>`
   font-weight: ${({ front }) => (front ? '700' : '500')};
   opacity: ${({ active }) => (active ? '90%' : '30%')};
 `;

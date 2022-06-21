@@ -6,9 +6,9 @@ import { CURRENT_VOTE_STATUS_REQUEST, IState } from '../../reducers';
 import { useCallback, useEffect, useState } from 'react';
 import ElectedCandidate from 'components/result/ElectedCandidate';
 import ResultCandidateList from 'components/result/ResultCandidateList';
-import { current, setUseProxies } from 'immer';
 import React from 'react';
 import Header from 'components/common/Header';
+import { PageTitle } from 'styles/CommonStyle';
 
 const Result = () => {
   const { mode, currentVoteStatus } = useSelector<IState, IState>(
@@ -39,21 +39,20 @@ const Result = () => {
     <>
       <AppLayout>
         <Header backButton={backToHome} />
+        <Wrapper>
+          <PageTitle>Result</PageTitle>
+          <FrontLeaderResult>
+            <h3>프론트엔드 파트장</h3>
+            {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
+            {sameCount === '' ? (
+              <ElectedCandidate frontLeaderName={frontLeader.name} />
+            ) : (
+              <ElectedCandidate frontLeaderName={sameCount} />
+            )}
+          </FrontLeaderResult>
 
-        <h1>투표 결과 보기 </h1>
-        <>
-          <h3>프론트엔드 파트장</h3>
-          {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
-          {sameCount === '' ? (
-            <ElectedCandidate frontLeaderName={frontLeader.name} />
-          ) : (
-            <ElectedCandidate frontLeaderName={sameCount} />
-          )}
-        </>
-
-        <>
-          <h3>투표 결과 상세</h3>
           <ResultCandidateListContainer>
+            <h3>투표 결과 상세</h3>
             {currentVoteStatus?.map((user) => {
               return (
                 <>
@@ -66,12 +65,19 @@ const Result = () => {
               );
             })}
           </ResultCandidateListContainer>
-        </>
+        </Wrapper>
       </AppLayout>
     </>
   );
 };
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 5fr;
+  height: 100%;
+  padding: 0 20px;
+`;
 
+const FrontLeaderResult = styled.div``;
 const ResultCandidateListContainer = styled.div`
   height: 400px;
   overflow: scroll;
