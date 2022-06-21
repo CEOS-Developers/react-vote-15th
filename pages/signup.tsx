@@ -75,7 +75,7 @@ const Signup = () => {
               type="text"
               onChange={onChangeUser}
               value={username}
-              placeholder="사용자이름"
+              placeholder="아이디"
               required
             />
             <TextInput
@@ -96,14 +96,14 @@ const Signup = () => {
               type="password"
               onChange={onChangePwdCheck}
               value={passwordCheck}
-              placeholder="비밀번호확인"
+              placeholder="비밀번호 확인"
               required
             />
             {passwordError && (
               <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</div>
             )}
             <StyledButton>
-              <AccessButton>회원가입하기</AccessButton>
+              <AccessButton>회원가입</AccessButton>
             </StyledButton>
           </LogInFormStyle>
         </Wrapper>
