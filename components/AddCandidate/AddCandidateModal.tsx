@@ -67,7 +67,7 @@ const Wrapper = styled.div`
 const AddCandidateInput = styled.input`
   width: 250px;
   padding-left: 1rem;
-  border: 2px solid #f7d553;
+  border: none;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 400;
