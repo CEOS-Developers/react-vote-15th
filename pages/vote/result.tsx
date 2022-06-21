@@ -9,6 +9,7 @@ import ResultCandidateList from 'components/result/ResultCandidateList';
 import React from 'react';
 import Header from 'components/common/Header';
 import { PageTitle } from 'styles/CommonStyle';
+import { setUseProxies } from 'immer';
 
 const Result = () => {
   const { mode, currentVoteStatus } = useSelector<IState, IState>(
@@ -52,11 +53,12 @@ const Result = () => {
           </FrontLeaderResult>
 
           <ResultCandidateListContainer>
-            <h3>투표 결과 상세</h3>
+            <h3>Rank</h3>
             {currentVoteStatus?.map((user) => {
               return (
                 <>
                   <ResultCandidateList
+                    index={currentVoteStatus.indexOf(user)}
                     key={user.id + `new Date()`}
                     name={user.name}
                     count={user.count}
@@ -77,10 +79,13 @@ const Wrapper = styled.div`
   padding: 0 20px;
 `;
 
-const FrontLeaderResult = styled.div``;
+const FrontLeaderResult = styled.div`
+  padding: 0 20px;
+`;
 const ResultCandidateListContainer = styled.div`
   height: 400px;
   overflow: scroll;
+  padding: 0 20px;
 `;
 
 export default React.memo(Result);

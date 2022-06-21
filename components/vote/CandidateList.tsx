@@ -6,6 +6,7 @@ import {
   IState,
   VOTE_TO_CANDIDATE_REQUEST,
 } from '../../reducers';
+import { CandidateInfo, CandidateName } from 'styles/CommonStyle';
 
 interface Props {
   name: string;
@@ -40,19 +41,19 @@ const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
   };
 
   return (
-    <Wrapper>
+    <CandidateListWrapper>
       <CandidateImg
         src={`https://source.boringavatars.com/beam/20/${name}?colors=264653,2a9d8f,e9c46a,f4a261,e76f51`}
       />
       <CandidateInfo>
-        <Name>{name}</Name>
+        <CandidateName>{name}</CandidateName>
       </CandidateInfo>
       <VotedButton onClick={onClickVoteButton}>투표하기</VotedButton>
-    </Wrapper>
+    </CandidateListWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const CandidateListWrapper = styled.div`
   width: 100%;
   height: 100px;
   padding: 10px;
@@ -68,15 +69,7 @@ const CandidateImg = styled.img`
   height: 100%;
   padding: 0 0 0 30px;
 `;
-const CandidateInfo = styled.div`
-  display: grid;
-`;
 
-const Name = styled.div`
-  margin: auto;
-  font-weight: 500;
-  font-size: 20px;
-`;
 const VotedButton = styled.button`
   width: 100px;
   background-color: #e3af41;
