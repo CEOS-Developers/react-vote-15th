@@ -9,7 +9,7 @@ import {
   IState,
 } from '../../reducers';
 import { useCallback, useEffect } from 'react';
-import AddCandidateModal from '../../components/vote/AddCandidateModal';
+import AddCandidateModal from '../../components/AddCandidate/AddCandidateModal';
 import React from 'react';
 import Header from 'components/common/Header';
 import { PageTitle } from 'styles/CommonStyle';

@@ -7,6 +7,7 @@ import {
   IState,
 } from '../../reducers';
 import Modal from './Modal';
+import styled from 'styled-components';
 
 const AddCandidateModal = () => {
   const {
@@ -43,12 +44,46 @@ const AddCandidateModal = () => {
 
   return (
     <Modal>
-      <form onSubmit={onSubmitCandidateName} action="">
-        <input onChange={onChangeCandidateName} type="text" />
-        <button>추가하기</button>
-      </form>
+      <Wrapper>
+        <form onSubmit={onSubmitCandidateName} action="">
+          <AddCandidateInput
+            onChange={onChangeCandidateName}
+            placeholder="이름을 입력하세요 . ."
+            type="text"
+          />
+          <AddCandidateButtonContainer>
+            <AddCandidateButton>추가하기</AddCandidateButton>
+          </AddCandidateButtonContainer>
+        </form>
+      </Wrapper>
     </Modal>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+const AddCandidateInput = styled.input`
+  width: 250px;
+  padding-left: 1rem;
+  border: 2px solid #f7d553;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0.8rem 1.4rem;
+  height: 2.5rem;
+`;
+
+const AddCandidateButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const AddCandidateButton = styled.button`
+  font-weight: 500;
+  color: #353332;
+  padding: 10px 20px 0 0;
+`;
 
 export default AddCandidateModal;
