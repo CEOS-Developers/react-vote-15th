@@ -41,7 +41,9 @@ const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
 
   return (
     <Wrapper>
-      <CandidateImg>대략 그림</CandidateImg>
+      <CandidateImg
+        src={`https://source.boringavatars.com/beam/20/${name}?colors=264653,2a9d8f,e9c46a,f4a261,e76f51`}
+      />
       <CandidateInfo>
         <Name>{name}</Name>
       </CandidateInfo>
@@ -52,7 +54,7 @@ const CandidateList: FC<Props> = ({ name, candidateNumber }) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 90px;
+  height: 100px;
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -61,9 +63,10 @@ const Wrapper = styled.div`
   background-color: #f6f6f4;
   margin-bottom: 30px;
 `;
-const CandidateImg = styled.div`
+const CandidateImg = styled.img`
   width: 100%;
   height: 100%;
+  padding: 0 0 0 30px;
 `;
 const CandidateInfo = styled.div`
   display: grid;
@@ -78,7 +81,8 @@ const VotedButton = styled.button`
   width: 100px;
   background-color: #e3af41;
   color: white;
-  font-weight: 800;
+  font-weight: 700;
   border-radius: 20px;
+  font-size: 15px;
 `;
 export default CandidateList;
