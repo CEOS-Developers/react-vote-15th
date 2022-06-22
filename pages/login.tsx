@@ -93,4 +93,4 @@ const LogInFormStyle = styled.form`
   padding: 0 15px 0 15px;
 `;
 
-export default Login;
+export default React.memo(Login);

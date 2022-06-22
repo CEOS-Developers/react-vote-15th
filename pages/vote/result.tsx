@@ -44,6 +44,13 @@ const Result = () => {
           <PageTitle>Result</PageTitle>
         </TitleContainer>
         <Wrapper>
+          <AnimationContainer>
+            <Lottie
+              animationData={congratulations}
+              height="30px"
+              width="30px"
+            />
+          </AnimationContainer>
           <FrontLeaderResult>
             <h3>프론트엔드 파트장</h3>
 
@@ -86,6 +93,13 @@ const Wrapper = styled.div`
     display: none;
   }
 `;
+const AnimationContainer = styled.div`
+  position: fixed;
+  top: 50px;
+  pointer-events: none;
+  left: 50%;
+  transform: translate(-50%, 0);
+`;
 
 const TitleContainer = styled.div`
   padding: 0 20px;
@@ -105,4 +119,4 @@ const ResultCandidateListContainer = styled.div`
   padding: 0 20px;
 `;
 
-export default React.memo(Result);
+export default Result;
