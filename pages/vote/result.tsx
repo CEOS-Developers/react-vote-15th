@@ -9,8 +9,8 @@ import ResultCandidateList from 'components/result/ResultCandidateList';
 import React from 'react';
 import Header from 'components/common/Header';
 import { PageTitle } from 'styles/CommonStyle';
-import { setUseProxies } from 'immer';
-
+import Lottie, { LottiePlayer } from 'lottie-react';
+import congratulations from '../../animations/congratulations.json';
 const Result = () => {
   const { mode, currentVoteStatus } = useSelector<IState, IState>(
     (state) => state
@@ -46,6 +46,7 @@ const Result = () => {
         <Wrapper>
           <FrontLeaderResult>
             <h3>프론트엔드 파트장</h3>
+
             {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
             {sameCount === '' ? (
               <ElectedCandidate frontLeaderName={frontLeader.name} />
@@ -81,6 +82,9 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 0 20px;
   overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const TitleContainer = styled.div`
