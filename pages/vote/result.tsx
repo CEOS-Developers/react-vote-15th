@@ -40,8 +40,10 @@ const Result = () => {
     <>
       <AppLayout>
         <Header backButton={backToHome} />
-        <Wrapper>
+        <TitleContainer>
           <PageTitle>Result</PageTitle>
+        </TitleContainer>
+        <Wrapper>
           <FrontLeaderResult>
             <h3>프론트엔드 파트장</h3>
             {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
@@ -51,9 +53,10 @@ const Result = () => {
               <ElectedCandidate frontLeaderName={sameCount} />
             )}
           </FrontLeaderResult>
-
-          <ResultCandidateListContainer>
+          <RankTitleContainer>
             <h3>Rank</h3>
+          </RankTitleContainer>
+          <ResultCandidateListContainer>
             {currentVoteStatus?.map((user) => {
               return (
                 <>
@@ -74,8 +77,18 @@ const Result = () => {
 };
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 5fr;
+  grid-template-rows: 2fr 3fr;
   height: 100%;
+  padding: 0 20px;
+  overflow: auto;
+`;
+
+const TitleContainer = styled.div`
+  padding: 0 20px;
+  height: 100px;
+`;
+
+const RankTitleContainer = styled.div`
   padding: 0 20px;
 `;
 
