@@ -29,3 +29,13 @@ export const AccessButton = styled.button`
   font-size: 15px;
   font-weight: 700;
 `;
+
+export const CandidateInfo = styled.div`
+  display: grid;
+`;
+
+export const CandidateName = styled.div`
+  margin: auto;
+  font-weight: 500;
+  font-size: 20px;
+`;

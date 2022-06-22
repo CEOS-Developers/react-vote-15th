@@ -12,6 +12,7 @@
     "boring-avatars": "^1.7.0",
     "dayjs": "^1.11.3",
     "dotenv": "^16.0.1",
+    "framer-motion": "^6.3.12",
     "gravatar": "^1.8.2",
     "immer": "^9.0.14",
     "moment": "^2.29.3",

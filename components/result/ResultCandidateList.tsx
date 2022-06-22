@@ -2,52 +2,61 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { IState } from 'reducers';
 import styled from 'styled-components';
+import { CandidateInfo, CandidateName } from 'styles/CommonStyle';
 
 interface Props {
   name: string;
   count: number;
+  index: number;
 }
-
-const ResultCandidateList: FC<Props> = ({ name, count }) => {
+const ResultCandidateList: FC<Props> = ({ name, count, index }) => {
   const { mode } = useSelector<IState, IState>((state) => state);
   return (
     <Wrapper>
-      <ResultImg>등수</ResultImg>
+      <ResultRank>{index + 1}</ResultRank>
       <CandidateInfo>
-        <Name>{name}</Name>
+        <CandidateName>{name}</CandidateName>
       </CandidateInfo>
-      <Count>{count}</Count>
+      <Count>{count}표</Count>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 70px;
-  padding: 5px;
+  height: 80px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   margin-bottom: 15px;
-  border-radius: 10px;
-  -webkit-box-shadow: 5px 5px 15px -5px #000000;
-  box-shadow: 5px 5px 15px -5px #000000;
+  border-radius: 15px;
+  background-color: #f6f6f4;
+  margin-bottom: 30px;
 `;
 
-const ResultImg = styled.div`
-  width: 100%;
-  height: 100%;
+const ResultRank = styled.div`
+  margin-left: 40px;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  line-height: 65px;
+  font-size: 35px;
+  font-weight: 900;
+  color: white;
+  background-color: #f9da9a;
 `;
-
-const CandidateInfo = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  border: 1px solid red;
-`;
-
-const Name = styled.div``;
 
 const Count = styled.div`
-  margin: auto;
+  line-height: 60px;
+  text-align: center;
+  width: 100px;
+  background-color: #e3af41;
+  color: white;
+  font-weight: 700;
+  border-radius: 20px;
+  font-size: 15px;
+  height: 60px;
 `;
 
 export default ResultCandidateList;

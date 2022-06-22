@@ -9,6 +9,7 @@ import ResultCandidateList from 'components/result/ResultCandidateList';
 import React from 'react';
 import Header from 'components/common/Header';
 import { PageTitle } from 'styles/CommonStyle';
+import { setUseProxies } from 'immer';
 
 const Result = () => {
   const { mode, currentVoteStatus } = useSelector<IState, IState>(
@@ -39,8 +40,10 @@ const Result = () => {
     <>
       <AppLayout>
         <Header backButton={backToHome} />
-        <Wrapper>
+        <TitleContainer>
           <PageTitle>Result</PageTitle>
+        </TitleContainer>
+        <Wrapper>
           <FrontLeaderResult>
             <h3>프론트엔드 파트장</h3>
             {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
@@ -50,13 +53,15 @@ const Result = () => {
               <ElectedCandidate frontLeaderName={sameCount} />
             )}
           </FrontLeaderResult>
-
+          <RankTitleContainer>
+            <h3>Rank</h3>
+          </RankTitleContainer>
           <ResultCandidateListContainer>
-            <h3>투표 결과 상세</h3>
             {currentVoteStatus?.map((user) => {
               return (
                 <>
                   <ResultCandidateList
+                    index={currentVoteStatus.indexOf(user)}
                     key={user.id + `new Date()`}
                     name={user.name}
                     count={user.count}
@@ -72,15 +77,28 @@ const Result = () => {
 };
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 5fr;
+  grid-template-rows: 2fr 3fr;
   height: 100%;
+  padding: 0 20px;
+  overflow: auto;
+`;
+
+const TitleContainer = styled.div`
+  padding: 0 20px;
+  height: 100px;
+`;
+
+const RankTitleContainer = styled.div`
   padding: 0 20px;
 `;
 
-const FrontLeaderResult = styled.div``;
+const FrontLeaderResult = styled.div`
+  padding: 0 20px;
+`;
 const ResultCandidateListContainer = styled.div`
   height: 400px;
   overflow: scroll;
+  padding: 0 20px;
 `;
 
 export default React.memo(Result);

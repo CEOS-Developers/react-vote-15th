@@ -20,7 +20,7 @@ const Modal: FC<Props> = ({ children }) => {
   return (
     <ModalWrapper onClick={handleCloseModal}>
       <Container onClick={stopPropagation}>
-        <button onClick={handleCloseModal}>❌</button>
+        <CloseButton onClick={handleCloseModal}>X</CloseButton>
         {children}
       </Container>
     </ModalWrapper>
@@ -32,18 +32,22 @@ const ModalWrapper = styled.div`
   left: 0px;
   bottom: 0;
   top: 0;
-  right: 0;
+  right: 10px;
   z-index: 1022;
 `;
 
-//
+const CloseButton = styled.button`
+  margin: 10px;
+  font-weight: 700;
+`;
 const Container = styled.div`
-  width: 200px;
-  height: 70px;
+  width: 300px;
+  height: 150px;
   position: absolute;
-  background: var(--bg-mode-gray);
+  background: #fdf6d8;
   right: 10vh;
   top: 30vh;
+  border-radius: 15px;
 `;
 
 export default Modal;
