@@ -8,6 +8,7 @@ import backUrl from '../public/back.png';
 import ceosUrl from '../public/ceos.png';
 import { PageTitle } from 'styles/CommonStyle';
 import Header from './common/Header';
+import React from 'react';
 
 const MainVoteList = () => {
   interface INames {
@@ -185,4 +186,4 @@ const VoteName = styled.div<{ mode?: boolean; active?: boolean }>`
   font-weight: 500;
 `;
 
-export default MainVoteList;
+export default React.memo(MainVoteList);
