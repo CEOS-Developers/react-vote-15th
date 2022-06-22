@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { IState } from 'reducers';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
+import congratulations from '../../animations/congratulations.json';
 
 interface Props {
   frontLeaderName: string;
@@ -11,31 +13,32 @@ interface Props {
 const ElectedCandidate: FC<Props> = ({ frontLeaderName }) => {
   const { mode } = useSelector<IState, IState>((state) => state);
 
-  <motion.div animate={{ rotate: 360 }} transition={{ duration: 2 }} />;
   return (
-    <Wrapper>
-      <Congratulate>🎉 축하합니다! 🎉</Congratulate>
-      <FrontLeaderName>{frontLeaderName}</FrontLeaderName>
-    </Wrapper>
+    <motion.div animate={{ scale: 2 }} transition={{ duration: 2 }}>
+      <Wrapper>
+        <Congratulate>🎉 축하합니다! 🎉</Congratulate>
+        <FrontLeaderName>{frontLeaderName}</FrontLeaderName>
+      </Wrapper>
+    </motion.div>
   );
 };
 
 const Wrapper = styled.div`
-  border: 1px solid;
+  /* border: 1.5px solid #848281; */
   border-radius: 30px;
-  height: 200px;
+  height: 100px;
   text-align: center;
   margin: 15px;
 `;
 
 const Congratulate = styled.div`
   padding-top: 20px;
-  font-size: 20px;
+  font-size: 10px;
   font-weight: 600;
 `;
 const FrontLeaderName = styled.div`
-  line-height: 130px;
-  font-size: 35px;
+  line-height: 70px;
+  font-size: 17px;
   color: #e3af41;
   font-weight: 600;
 `;
