@@ -9,7 +9,7 @@ import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
 import Header from 'components/common/Header';
 
 const Login = () => {
-  const { mode, user, logInError } = useSelector<IState, IState>(
+  const { logInDone, logInError } = useSelector<IState, IState>(
     (state) => state
   );
 
@@ -42,13 +42,13 @@ const Login = () => {
     [username, password]
   );
   useEffect(() => {
-    if (user) {
+    if (logInDone) {
       router.push('/').then(() => null);
     }
     if (logInError) {
       alert('아이디 비밀번호를 다시 확인해주세요');
     }
-  }, [user, logInError]);
+  }, [logInDone, logInError]);
   return (
     <>
       <AppLayout>

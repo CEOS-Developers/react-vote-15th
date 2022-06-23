@@ -21,6 +21,7 @@ const Vote = () => {
     currentVoteStatus,
     user,
     addCandidateNameDone,
+    voteToCandidateDone,
   } = useSelector<IState, IState>((state) => state);
 
   const dispatch = useDispatch();
@@ -47,9 +48,9 @@ const Vote = () => {
       type: CURRENT_VOTE_STATUS_REQUEST,
       data: null,
     });
-  }, [addCandidateNameDone]);
+  }, [addCandidateNameDone,voteToCandidateDone]);
 
-  console.log(currentVoteStatus);
+
 
   return (
     <>

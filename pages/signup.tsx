@@ -14,7 +14,7 @@ import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
 import Header from 'components/common/Header';
 
 const Signup = () => {
-  const { mode, user, signUpError } = useSelector<IState, IState>(
+  const { signUpError,signUpDone } = useSelector<IState, IState>(
     (state) => state
   );
   const router = useRouter();
@@ -55,15 +55,15 @@ const Signup = () => {
   );
 
   useEffect(() => {
-    // if (user) {
-    //   router
-    //     .push("/")
-    //     .then((r) => alert("회원 가입이 됐습니다. 바로 이동합니다."));
-    // }
+    if (signUpDone) {
+      router
+        .push("/login")
+        .then((r) => alert("회원 가입이 됐습니다. 로그인 페이지로 이동합니다."));
+    }
     if (signUpError) {
       alert('값이 잘못 입력 됐습니다.');
     }
-  }, [user, signUpError]);
+  }, [ signUpError, signUpDone]);
   return (
     <>
       <AppLayout>
