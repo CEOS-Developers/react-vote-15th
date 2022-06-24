@@ -16,10 +16,8 @@ import { PageTitle } from 'styles/CommonStyle';
 
 const Vote = () => {
   const {
-    mode,
     handleCandidateModal,
     currentVoteStatus,
-    user,
     addCandidateNameDone,
     voteToCandidateDone,
   } = useSelector<IState, IState>((state) => state);
@@ -48,9 +46,7 @@ const Vote = () => {
       type: CURRENT_VOTE_STATUS_REQUEST,
       data: null,
     });
-  }, [addCandidateNameDone,voteToCandidateDone]);
-
-
+  }, [addCandidateNameDone, voteToCandidateDone]);
 
   return (
     <>

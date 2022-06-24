@@ -4,17 +4,12 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import useInput from '../hooks/useInput';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  IState,
-  LOG_IN_REQUEST,
-  LOGGED_IN,
-  SIGN_UP_REQUEST,
-} from '../reducers';
+import { IState, SIGN_UP_REQUEST } from '../reducers';
 import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
 import Header from 'components/common/Header';
 
 const Signup = () => {
-  const { signUpError,signUpDone } = useSelector<IState, IState>(
+  const { signUpError, signUpDone } = useSelector<IState, IState>(
     (state) => state
   );
   const router = useRouter();
@@ -57,13 +52,15 @@ const Signup = () => {
   useEffect(() => {
     if (signUpDone) {
       router
-        .push("/login")
-        .then((r) => alert("회원 가입이 됐습니다. 로그인 페이지로 이동합니다."));
+        .push('/login')
+        .then((r) =>
+          alert('회원 가입이 됐습니다. 로그인 페이지로 이동합니다.')
+        );
     }
     if (signUpError) {
       alert('값이 잘못 입력 됐습니다.');
     }
-  }, [ signUpError, signUpDone]);
+  }, [signUpError, signUpDone]);
   return (
     <>
       <AppLayout>

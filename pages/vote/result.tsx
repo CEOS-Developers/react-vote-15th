@@ -9,12 +9,10 @@ import ResultCandidateList from 'components/result/ResultCandidateList';
 import React from 'react';
 import Header from 'components/common/Header';
 import { PageTitle } from 'styles/CommonStyle';
-import Lottie, { LottiePlayer } from 'lottie-react';
+import Lottie from 'lottie-react';
 import congratulations from '../../animations/congratulations.json';
 const Result = () => {
-  const { mode, currentVoteStatus } = useSelector<IState, IState>(
-    (state) => state
-  );
+  const { currentVoteStatus } = useSelector<IState, IState>((state) => state);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -35,6 +33,8 @@ const Result = () => {
       setFrontLeader(currentVoteStatus[0]);
     }
   }, [currentVoteStatus]);
+
+  console.log(currentVoteStatus);
 
   const backToHome = useCallback(() => {
     router.push('/vote').then((r) => null);
