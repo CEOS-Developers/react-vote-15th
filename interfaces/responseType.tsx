@@ -1,6 +1,6 @@
-import { ICurrentVoteStatus } from "./interface";
+import { ICurrentVoteStatus } from './interface';
 
-export interface ILogInResponseType {
+interface ILogInResponseType {
   data: {
     message: string;
     user: string;
@@ -15,7 +15,7 @@ export interface ILogInResponseType {
   request: XMLHttpRequest;
 }
 
-export interface ISignUpResponseType {
+interface ISignUpResponseType {
   data: {
     message: string;
     user: string;
@@ -28,7 +28,7 @@ export interface ISignUpResponseType {
   config: {};
   request: XMLHttpRequest;
 }
-export interface IAddCandidateNameResponseType {
+interface IAddCandidateNameResponseType {
   data: {
     message: string;
     id: number;
@@ -42,7 +42,7 @@ export interface IAddCandidateNameResponseType {
   request: XMLHttpRequest;
 }
 
-export interface IVoteToCandidateResponseType {
+interface IVoteToCandidateResponseType {
   data: {
     message: string;
   };
@@ -53,7 +53,7 @@ export interface IVoteToCandidateResponseType {
   request: XMLHttpRequest;
 }
 
-export interface ICurrentVoteStatusResponseType {
+interface ICurrentVoteStatusResponseType {
   data: ICurrentVoteStatus;
   status: number;
   statusText: string;
@@ -61,3 +61,11 @@ export interface ICurrentVoteStatusResponseType {
   config: {};
   request: XMLHttpRequest;
 }
+
+export type {
+  ILogInResponseType,
+  ISignUpResponseType,
+  IAddCandidateNameResponseType,
+  IVoteToCandidateResponseType,
+  ICurrentVoteStatusResponseType,
+};

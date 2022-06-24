@@ -5,27 +5,35 @@ import {
   ILogInData,
   ISignUpData,
   IVoteToCandidateData,
-} from "./dataType";
+} from './dataType';
 
-export interface ISignUpAction {
+interface ISignUpAction {
   type: string;
   data: ISignUpData;
 }
-export interface ILogInAction {
+interface ILogInAction {
   type: string;
   data: ILogInData;
 }
 
-export interface IAddCandidateNameAction {
+interface IAddCandidateNameAction {
   type: string;
   data: IAddCandidateNameData;
 }
 
-export interface ICurrentVoteStatusAction {
+interface ICurrentVoteStatusAction {
   type: string;
   data: null;
 }
-export interface IVoteToCandidateAction {
+interface IVoteToCandidateAction {
   type: string;
   data: IVoteToCandidateData;
 }
+
+export type {
+  ISignUpAction,
+  ILogInAction,
+  IAddCandidateNameAction,
+  ICurrentVoteStatusAction,
+  IVoteToCandidateAction,
+};

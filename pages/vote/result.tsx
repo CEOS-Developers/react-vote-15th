@@ -18,7 +18,7 @@ const Result = () => {
   const router = useRouter();
   const [frontLeader, setFrontLeader] = useState(currentVoteStatus[0]);
   const [sameCount, setSameCount] = useState('');
-
+  let index = 1;
   useEffect(() => {
     dispatch({
       type: CURRENT_VOTE_STATUS_REQUEST,
@@ -73,7 +73,7 @@ const Result = () => {
               return (
                 <>
                   <ResultCandidateList
-                    index={currentVoteStatus.indexOf(user)}
+                    index={index++}
                     key={user.id + `new Date()`}
                     name={user?.name}
                     count={user.count}
