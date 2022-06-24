@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { IState } from '../reducers';
 import { useRouter } from 'next/router';
 import Image from 'next/image';

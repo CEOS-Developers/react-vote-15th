@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { IState } from 'reducers';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Lottie from 'lottie-react';
-import congratulations from '../../animations/congratulations.json';
 
 interface Props {
   frontLeaderName: string;

@@ -10,13 +10,9 @@ import Modal from './Modal';
 import styled from 'styled-components';
 
 const AddCandidateModal = () => {
-  const {
-    mode,
-    handleCandidateModal,
-    currentVoteStatus,
-    user,
-    addCandidateNameDone,
-  } = useSelector<IState, IState>((state) => state);
+  const { addCandidateNameDone } = useSelector<IState, IState>(
+    (state) => state
+  );
   const dispatch = useDispatch();
   const [candidateName, onChangeCandidateName] = useInput('');
 
