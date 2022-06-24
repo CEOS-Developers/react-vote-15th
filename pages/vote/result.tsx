@@ -16,6 +16,7 @@ const Result = () => {
     (state) => state
   );
 
+
   const dispatch = useDispatch();
   const router = useRouter();
   const [frontLeader, setFrontLeader] = useState(currentVoteStatus[0]);
@@ -29,7 +30,7 @@ const Result = () => {
 
   // 최다 득표자가 2명이상일 때 처리. 근데 useEffect 무한루프..
   useEffect(() => {
-    console.log(currentVoteStatus)
+
     if (currentVoteStatus[0].count === currentVoteStatus[1].count) {
       setSameCount('최다 득표자가 2명 이상입니다!');
     } else {
@@ -63,7 +64,7 @@ const Result = () => {
 
             {/* sameCount가 null이 아니면 sameCount를 넘겨주고 NUll이면 frontLeader 넘겨주기 */}
             {sameCount === '' ? (
-              <ElectedCandidate frontLeaderName={frontLeader.name} />
+              <ElectedCandidate frontLeaderName={frontLeader?.name} />
             ) : (
               <ElectedCandidate frontLeaderName={sameCount} />
             )}
@@ -76,9 +77,9 @@ const Result = () => {
               return (
                 <>
                   <ResultCandidateList
-                    index={currentVoteStatus.indexOf(user)}
+                    index={user.id}
                     key={user.id + `new Date()`}
-                    name={user.name}
+                    name={user?.name}
                     count={user.count}
                   />
                 </>

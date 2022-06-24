@@ -13,7 +13,7 @@ export interface IState {
 
   handleCandidateModal: boolean;
   user: IUser | null;
-  currentVoteStatus: ICurrentVoteStatus | null;
+  currentVoteStatus: ICurrentVoteStatus | [];
   currentVoteStatusByCandidate: ICurrentVoteStatusByCandidate | null;
   signUpLoading: boolean | null;
   signUpDone: boolean | null;
@@ -35,7 +35,7 @@ const initialState: IState = {
   mode: true,
   handleCandidateModal: false,
   user: null,
-  currentVoteStatus: null,
+  currentVoteStatus: [],
   currentVoteStatusByCandidate: null,
   // 아래부터는 비동기 처리
   signUpLoading: false,
