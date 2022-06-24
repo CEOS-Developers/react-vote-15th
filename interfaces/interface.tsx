@@ -1,4 +1,4 @@
-export interface IUser {
+interface IUser {
   message: string;
   user: string;
   access: string;
@@ -7,7 +7,7 @@ export interface IUser {
 }
 
 // 투표한 사람에 대한 정보
-export interface IVotedUsersType {
+interface IVotedUsersType {
   id: number;
   candidate: number;
   candidate_name: string;
@@ -17,7 +17,7 @@ export interface IVotedUsersType {
 }
 
 // 후보자별 현황 조회
-export interface ICurrentVoteStatusByCandidate {
+interface ICurrentVoteStatusByCandidate {
   id: number;
   name: string;
   count: number;
@@ -25,5 +25,11 @@ export interface ICurrentVoteStatusByCandidate {
 }
 
 // 투표 현황 조회
-export interface ICurrentVoteStatus
-  extends Array<ICurrentVoteStatusByCandidate> {}
+interface ICurrentVoteStatus extends Array<ICurrentVoteStatusByCandidate> {}
+
+export type {
+  IUser,
+  IVotedUsersType,
+  ICurrentVoteStatusByCandidate,
+  ICurrentVoteStatus,
+};

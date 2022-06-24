@@ -13,7 +13,7 @@ const ResultCandidateList: FC<Props> = ({ name, count, index }) => {
   const { mode } = useSelector<IState, IState>((state) => state);
   return (
     <Wrapper>
-      <ResultRank>{index + 1}</ResultRank>
+      <ResultRank>{index}</ResultRank>
       <CandidateInfo>
         <CandidateName>{name}</CandidateName>
       </CandidateInfo>

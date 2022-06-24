@@ -1,17 +1,24 @@
-export interface ISignUpData {
+interface ISignUpData {
   username: string;
   email: string;
   password: string;
 }
 
-export interface ILogInData {
+interface ILogInData {
   username: string;
   password: string;
 }
-export interface IAddCandidateNameData {
+interface IAddCandidateNameData {
   name: string;
 }
 
-export interface IVoteToCandidateData {
+interface IVoteToCandidateData {
   id: string;
 }
+
+export type {
+  ISignUpData,
+  ILogInData,
+  IAddCandidateNameData,
+  IVoteToCandidateData,
+};
