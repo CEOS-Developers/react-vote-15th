@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IState, SIGN_UP_REQUEST } from '../reducers';
 import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
 import Header from 'components/common/Header';
-
+import { toast } from 'react-toastify';
 const Signup = () => {
   const { signUpError, signUpDone } = useSelector<IState, IState>(
     (state) => state
@@ -51,14 +51,28 @@ const Signup = () => {
 
   useEffect(() => {
     if (signUpDone) {
-      router
-        .push('/login')
-        .then((r) =>
-          alert('회원 가입이 됐습니다. 로그인 페이지로 이동합니다.')
-        );
+      router.push('/login').then((r) =>
+        toast('회원 가입이 완료 됐습니다. 로그인 페이지로 이동합니다.', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      );
     }
     if (signUpError) {
-      alert('값이 잘못 입력 됐습니다.');
+      toast('값이 잘못 입력 됐습니다.', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }, [signUpError, signUpDone]);
   return (

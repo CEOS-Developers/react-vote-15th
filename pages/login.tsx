@@ -7,6 +7,7 @@ import { IState, LOG_IN_REQUEST } from '../reducers';
 import useInput from '../hooks/useInput';
 import { AccessButton, PageTitle, TextInput } from 'styles/CommonStyle';
 import Header from 'components/common/Header';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { logInDone, logInError } = useSelector<IState, IState>(
@@ -46,7 +47,15 @@ const Login = () => {
       router.push('/').then(() => null);
     }
     if (logInError) {
-      alert('아이디 비밀번호를 다시 확인해주세요');
+      toast('아이디 비밀번호를 다시 확인해주세요', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }, [logInDone, logInError]);
   return (
